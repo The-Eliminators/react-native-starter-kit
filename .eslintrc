@@ -1,0 +1,8 @@
+{
+  "root": true,
+  "extends": "@react-native-community",
+  "rules": {
+    "no-unused-vars": "warn",
+    "prettier/prettier": "warn"
+  }
+}

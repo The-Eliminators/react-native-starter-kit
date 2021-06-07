@@ -1,5 +1,6 @@
 package com.reactnativestarterkit;
 
+import android.os.Bundle;
 import com.facebook.react.ReactActivity;
 
 public class MainActivity extends ReactActivity {
@@ -12,4 +13,11 @@ public class MainActivity extends ReactActivity {
   protected String getMainComponentName() {
     return "ReactNativeStarterKit";
   }
+  
+
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+      super.onCreate(null);
+  }
+
 }
