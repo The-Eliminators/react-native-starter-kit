@@ -1,9 +1,9 @@
 import React from 'react';
 import { createStackNavigator, StackNavigationOptions } from '@react-navigation/stack';
 import { RootStackParamList } from './types';
-import HomeScreen from 'src/screens/HomeScreen';
-import DummyScreen from 'src/screens/DummyScreen';
-import SettingScreen from 'src/screens/SettingScreen';
+import HomeScreen from 'src/features/HomeScreen';
+import ComponentScreen from 'src/features/ComponentScreen';
+import SettingScreen from 'src/features/SettingScreen';
 
 const Stack = createStackNavigator<RootStackParamList>();
 const horizontalAnimation: StackNavigationOptions = {
@@ -29,7 +29,7 @@ const RootNavigator = () => {
   return (
     <Stack.Navigator mode="modal" screenOptions={horizontalAnimation}>
       <Stack.Screen name="HomeScreen" options={{ title: 'Home Screen' }} component={HomeScreen} />
-      <Stack.Screen name="DummyScreen" options={{ title: 'Dummy Screen' }} component={DummyScreen} />
+      <Stack.Screen name="ComponentScreen" options={{ title: 'Component Screen' }} component={ComponentScreen} />
       <Stack.Screen name="SettingScreen" options={{ title: 'Settings Screen' }} component={SettingScreen} />
     </Stack.Navigator>
   );

@@ -7,7 +7,7 @@ const SettingScreen: FC<StackScreenProps<RootStackParamList, 'SettingScreen'>> =
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Settings Screen</Text>
-      <Button title="Dummy Screen" onPress={() => navigation.navigate('DummyScreen')} />
+      <Button title="Component Screen" onPress={() => navigation.navigate('ComponentScreen')} />
     </View>
   );
 };

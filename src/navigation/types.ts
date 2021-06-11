@@ -1,5 +1,5 @@
 export type RootStackParamList = {
   HomeScreen: undefined;
-  DummyScreen: undefined;
+  ComponentScreen: undefined;
   SettingScreen: undefined;
 };

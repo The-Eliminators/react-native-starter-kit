@@ -1,6 +1,5 @@
-# TODO
+# REMAINING TASK
 
-1. Add Basic React Navigation
 1. Font Icon
 1. Splash Screen
 1. i18next support
@@ -18,3 +17,7 @@
 1. Bottom Sheet
 
 # Completed
+
+1. Add Basic React Navigation
+1. Restyle
+1. Theming
