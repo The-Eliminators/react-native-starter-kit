@@ -5,6 +5,7 @@ import Box from 'src/components/common/Box';
 import Text from 'src/components/common/Text';
 import { Button, Touchable } from 'src/components/Button';
 import { RootStackParamList } from 'src/navigation/types';
+import Surface from 'src/components/common/Surface';
 
 export default function ComponentScreen({}: StackScreenProps<RootStackParamList, 'ComponentScreen'>) {
   return (
@@ -38,6 +39,15 @@ export default function ComponentScreen({}: StackScreenProps<RootStackParamList,
           Same as TouchableOpacity but with restyle props
         </Text>
       </Touchable>
+
+      {/* Surface Component*/}
+      <Surface elevation={4} padding="l" margin="s" borderRadius={15}>
+        <Text variant="heading">Surface Component</Text>
+        <Text pt="s">
+          Surface is a basic container that can give depth to an element with elevation shadow. On dark theme, white
+          overlay over a component surface. On Light Theme, container has shadow.
+        </Text>
+      </Surface>
     </Box>
   );
 }
