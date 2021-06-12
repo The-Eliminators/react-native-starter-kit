@@ -2,6 +2,13 @@ import { Typography } from 'src/types/theme.type';
 import getFontFamily from './fontWeights';
 
 const typography: Typography = {
+  defaults: {
+    // Copy of Body
+    ...getFontFamily('regular'),
+    fontSize: 14,
+    lineHeight: 20,
+    color: 'onSurfaceMediumEmphasis',
+  },
   headline: {
     ...getFontFamily('regular'),
     fontSize: 24,

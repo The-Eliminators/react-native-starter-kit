@@ -1,4 +1,5 @@
 import { BaseTheme } from '@shopify/restyle';
+import Text from 'src/components/common/Text';
 
 export type Font = {
   fontFamily: string;
@@ -21,6 +22,7 @@ type Text = {
 };
 
 export type Typography = {
+  defaults: Text;
   headline: Text;
   title: Text;
   heading: Text;
