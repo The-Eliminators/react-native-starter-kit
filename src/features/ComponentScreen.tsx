@@ -23,6 +23,9 @@ export default function ComponentScreen({}: StackScreenProps<RootStackParamList,
         <Text variant="subtitle">Subtitle</Text>
         <Text variant="body">Body</Text>
         <Text variant="caption">Caption</Text>
+        <Text variant="subtitle" weight="medium">
+          Subtitle bold
+        </Text>
       </Box>
       <Button label="Click me" disabled={true} onPress={() => console.log('clicked')} />
 

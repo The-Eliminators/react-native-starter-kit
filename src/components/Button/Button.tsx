@@ -1,8 +1,9 @@
 import React from 'react';
 import { ColorProps } from '@shopify/restyle';
-import { Theme } from 'src/types/theme.type';
-import Text from '../common/Text';
+
 import { Touchable } from '.';
+import Text from '../common/Text';
+import { Theme } from 'src/types/theme.type';
 
 type Props = React.ComponentProps<typeof Touchable> &
   ColorProps<Theme> & {
@@ -21,7 +22,7 @@ const Button = ({ label, color = 'onPrimary', ...props }: Props) => {
       borderRadius={25}
       opacity={1}
       {...props}>
-      <Text p="xxs" variant="subtitle" color={color}>
+      <Text p="xxs" weight="medium" variant="subtitle" color={color}>
         {label}
       </Text>
     </Touchable>
