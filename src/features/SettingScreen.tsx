@@ -1,8 +1,6 @@
-import { StackScreenProps } from '@react-navigation/stack';
 import React, { FC } from 'react';
-import { Button } from 'src/components/Button';
-import Box from 'src/components/common/Box';
-import Text from 'src/components/common/Text';
+import { StackScreenProps } from '@react-navigation/stack';
+import { Button, Box, Text } from 'src/components';
 import { RootStackParamList } from 'src/navigation/types';
 
 const SettingScreen: FC<StackScreenProps<RootStackParamList, 'SettingScreen'>> = ({ navigation }) => {

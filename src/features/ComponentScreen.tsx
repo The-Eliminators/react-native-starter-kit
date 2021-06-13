@@ -1,12 +1,8 @@
 import { StackScreenProps } from '@react-navigation/stack';
 import * as React from 'react';
 
-import Box from 'src/components/common/Box';
-import Text from 'src/components/common/Text';
-import { Button, Touchable } from 'src/components/Button';
+import { Touchable, Text, Box, Surface, Separator, Button } from 'src/components';
 import { RootStackParamList } from 'src/navigation/types';
-import Surface from 'src/components/common/Surface';
-import Separator from 'src/components/common/Separator';
 import { ScrollView } from 'react-native';
 
 export default function ComponentScreen({}: StackScreenProps<RootStackParamList, 'ComponentScreen'>) {
@@ -36,7 +32,7 @@ export default function ComponentScreen({}: StackScreenProps<RootStackParamList,
 
         {/* Touchable and Button demo */}
 
-        <Button label="Click me" disabled={true} onPress={() => console.log('clicked')} />
+        <Button label="Click me" onPress={() => console.log('clicked')} />
 
         <Touchable padding="l" margin="s" borderRadius={8} backgroundColor="primary">
           <Text color="onPrimaryHighEmphasis" variant="subtitle">

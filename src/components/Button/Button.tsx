@@ -1,8 +1,7 @@
 import React from 'react';
 import { ColorProps } from '@shopify/restyle';
 
-import { Touchable } from '.';
-import Text from '../common/Text';
+import { Text, Touchable } from '..';
 import { Theme } from 'src/types/theme.type';
 
 type Props = React.ComponentProps<typeof Touchable> &
