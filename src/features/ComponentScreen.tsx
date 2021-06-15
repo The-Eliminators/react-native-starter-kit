@@ -1,11 +1,14 @@
 import { StackScreenProps } from '@react-navigation/stack';
 import * as React from 'react';
 
-import { Touchable, Text, Box, Surface, Separator, Button } from 'src/components';
+import { Touchable, Text, Box, Surface, Separator, Button, Label } from 'src/components';
 import { RootStackParamList } from 'src/navigation/types';
 import { ScrollView } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 export default function ComponentScreen({}: StackScreenProps<RootStackParamList, 'ComponentScreen'>) {
+  const { t, i18n } = useTranslation();
+
   return (
     <ScrollView>
       <Box flex={1}>
@@ -51,6 +54,22 @@ export default function ComponentScreen({}: StackScreenProps<RootStackParamList,
             overlay over a component surface. On Light Theme, container has shadow.
           </Text>
         </Surface>
+
+        <Separator width={2} />
+
+        <Box padding="m">
+          <Text variant="heading">i18n Support</Text>
+          <Box flex={1} flexDirection="row" justifyContent="space-around">
+            <Button label="English" width="40%" onPress={() => i18n.changeLanguage('en')} />
+            <Button label="Marathi" width="40%" onPress={() => i18n.changeLanguage('mr')} />
+          </Box>
+          <Label variant="subtitle" name="labelComponent" />
+          <Label name="hiMessage" />
+          <Label variant="heading" name="myNameIs" />
+          <Label variant="title" name="helloWorld" />
+          <Text>{t('tFunctionEg')}</Text>
+        </Box>
+        <Separator width={2} />
       </Box>
     </ScrollView>
   );

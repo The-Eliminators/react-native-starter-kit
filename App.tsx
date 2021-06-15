@@ -3,10 +3,11 @@ import { enableScreens } from 'react-native-screens';
 enableScreens(true);
 
 import React from 'react';
-import { StatusBar, useColorScheme } from 'react-native';
 import { ThemeProvider } from '@shopify/restyle';
+import { StatusBar, useColorScheme } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
+import 'src/i18n';
 import theme from 'src/theme';
 import Navigation from 'src/navigation';
 
