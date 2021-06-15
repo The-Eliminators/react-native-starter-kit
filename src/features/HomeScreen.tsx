@@ -5,7 +5,7 @@ import { RootStackParamList } from 'src/navigation/types';
 
 const HomeScreen: FC<StackScreenProps<RootStackParamList, 'HomeScreen'>> = ({ navigation }) => {
   return (
-    <Box flex={1} justifyContent="center">
+    <Box flex={1} justifyContent="center" alignItems="center">
       <Label textAlign="center" name="home" />
       <Button label="Settings" onPress={() => navigation.navigate('SettingScreen')} />
     </Box>
