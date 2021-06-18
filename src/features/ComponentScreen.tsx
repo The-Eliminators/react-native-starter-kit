@@ -1,13 +1,15 @@
-import { StackScreenProps } from '@react-navigation/stack';
 import * as React from 'react';
+import { Alert, ScrollView } from 'react-native';
+import { StackScreenProps } from '@react-navigation/stack';
 
-import { Touchable, Text, Box, Surface, Separator, Button, Label } from 'src/components';
-import { RootStackParamList } from 'src/navigation/types';
-import { ScrollView } from 'react-native';
+import { useSnackbar } from 'src/hooks';
 import { useTranslation } from 'react-i18next';
+import { RootStackParamList } from 'src/navigation/types';
+import { Touchable, Text, Box, Surface, Separator, Button, Label } from 'src/components';
 
 export default function ComponentScreen({}: StackScreenProps<RootStackParamList, 'ComponentScreen'>) {
   const { t, i18n } = useTranslation();
+  const showSnackbar = useSnackbar();
 
   return (
     <ScrollView>
@@ -56,7 +58,53 @@ export default function ComponentScreen({}: StackScreenProps<RootStackParamList,
         </Surface>
 
         <Separator width={2} />
+        <Text variant="heading">Snackbar</Text>
+        <Box flex={1} flexDirection="row" flexWrap="wrap" justifyContent="space-around">
+          <Button
+            label="show Snackbar"
+            width="40%"
+            onPress={() => showSnackbar({ text: 'Show the text on Snackbar', type: 'success' })}
+          />
+          <Button
+            label="with action"
+            width="40%"
+            onPress={() =>
+              showSnackbar({
+                text: 'Show the text on Snackbar',
+                action: { label: 'ok', onPress: () => Alert.alert('hello') },
+                duration: 'long',
+                type: 'info',
+              })
+            }
+          />
+          <Button
+            label="Warning"
+            width="40%"
+            onPress={() =>
+              showSnackbar({
+                text: 'Show the text on Snackbar',
+                action: { label: 'Undo', onPress: () => Alert.alert('hello') },
+                duration: 'long',
+                type: 'warning',
+              })
+            }
+          />
+          <Button
+            label="error"
+            width="40%"
+            onPress={() =>
+              showSnackbar({
+                text: 'Show the text on Snackbar',
+                action: { label: 'Undo', onPress: () => Alert.alert('hello') },
+                duration: 'long',
+                type: 'error',
+              })
+            }
+          />
+        </Box>
+        <Separator width={2} />
 
+        {/* i18n Support */}
         <Box padding="m">
           <Text variant="heading">i18n Support</Text>
           <Box flex={1} flexDirection="row" justifyContent="space-around">

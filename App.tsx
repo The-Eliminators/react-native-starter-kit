@@ -10,6 +10,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import 'src/i18n';
 import theme from 'src/theme';
 import Navigation from 'src/navigation';
+import { SnackbarProvider } from 'src/context';
 
 const App = () => {
   const themeMode = useColorScheme();
@@ -17,7 +18,9 @@ const App = () => {
     <ThemeProvider theme={themeMode === 'light' ? theme.lightTheme : theme.darkTheme}>
       <SafeAreaProvider>
         <StatusBar barStyle="dark-content" backgroundColor="white" />
-        <Navigation />
+        <SnackbarProvider>
+          <Navigation />
+        </SnackbarProvider>
       </SafeAreaProvider>
     </ThemeProvider>
   );
