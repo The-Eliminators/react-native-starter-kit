@@ -4,6 +4,7 @@ import { RootStackParamList } from './types';
 import HomeScreen from 'src/features/HomeScreen';
 import ComponentScreen from 'src/features/ComponentScreen';
 import SettingScreen from 'src/features/SettingScreen';
+import TestScreen from 'src/features/TestScreen';
 
 const Stack = createStackNavigator<RootStackParamList>();
 const horizontalAnimation: StackNavigationOptions = {
@@ -31,6 +32,7 @@ const RootNavigator = () => {
       <Stack.Screen name="HomeScreen" options={{ title: 'Home Screen' }} component={HomeScreen} />
       <Stack.Screen name="ComponentScreen" options={{ title: 'Component Screen' }} component={ComponentScreen} />
       <Stack.Screen name="SettingScreen" options={{ title: 'Settings Screen' }} component={SettingScreen} />
+      <Stack.Screen name="TestScreen" options={{ title: 'Test Screen' }} component={TestScreen} />
     </Stack.Navigator>
   );
 };
