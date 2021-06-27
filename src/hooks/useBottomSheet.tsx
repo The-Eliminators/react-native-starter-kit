@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { BottomSheet } from 'src/components';
 
-const useBottonSheet = () => {
+const useBottomSheet = () => {
   const bottomSheetRef = useRef<BottomSheet>(null);
   const open = () => bottomSheetRef.current?.open();
   const close = () => bottomSheetRef.current?.close();
@@ -13,4 +13,4 @@ const useBottonSheet = () => {
   };
 };
 
-export default useBottonSheet;
+export default useBottomSheet;

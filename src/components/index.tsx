@@ -9,3 +9,4 @@ export { default as Surface } from './common/Surface';
 export { default as Snackbar } from './common/Snackbar';
 export { default as Separator } from './common/Separator';
 export { default as BottomSheet } from './common/BottomSheet';
+export { default as ActionSheet } from './common/ActionSheet';

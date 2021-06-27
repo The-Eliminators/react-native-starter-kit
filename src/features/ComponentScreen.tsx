@@ -2,16 +2,16 @@ import * as React from 'react';
 import { Alert, ScrollView } from 'react-native';
 import { StackScreenProps } from '@react-navigation/stack';
 
-import { useSnackbar } from 'src/hooks';
 import { useTranslation } from 'react-i18next';
 import { RootStackParamList } from 'src/navigation/types';
-import { Touchable, Text, Box, Surface, Separator, Button, Label, BottomSheet } from 'src/components';
-import useBottonSheet from 'src/hooks/useBottomSheet';
+import { useSnackbar, useActionSheet, useBottomSheet } from 'src/hooks';
+import { Touchable, Text, Box, Surface, Separator, Button, Label, BottomSheet, ActionSheet } from 'src/components';
 
 export default function ComponentScreen({}: StackScreenProps<RootStackParamList, 'ComponentScreen'>) {
   const { t, i18n } = useTranslation();
   const showSnackbar = useSnackbar();
-  const { bottomSheetRef, open, close } = useBottonSheet();
+  const { bottomSheetRef, open, close } = useBottomSheet();
+  const { actionSheetRef, open: openActionAheet } = useActionSheet();
 
   return (
     <>
@@ -57,7 +57,7 @@ export default function ComponentScreen({}: StackScreenProps<RootStackParamList,
           </Box>
 
           {/* Surface Component*/}
-          <Surface elevation={4} padding="l" margin="s" borderRadius={15}>
+          <Surface elevation={2} padding="l" margin="s" borderRadius={15}>
             <Text variant="heading">Surface Component</Text>
             <Text pt="s">
               Surface is a basic container that can give depth to an element with elevation shadow. On dark theme, white
@@ -70,11 +70,7 @@ export default function ComponentScreen({}: StackScreenProps<RootStackParamList,
           <Text variant="heading">Bottom Sheet</Text>
           <Box flex={1} flexDirection="row" flexWrap="wrap" justifyContent="space-around">
             <Button label="Open Botton Sheet" onPress={() => open()} />
-            <Button
-              label="show Snackbar"
-              width="40%"
-              onPress={() => showSnackbar({ text: 'Show the text on Snackbar', type: 'success' })}
-            />
+            <Button label="Open Action Sheet" onPress={() => openActionAheet()} />
           </Box>
 
           {/* Snackbar Example */}
@@ -142,6 +138,7 @@ export default function ComponentScreen({}: StackScreenProps<RootStackParamList,
         </Box>
       </ScrollView>
 
+      {/* Bottom Sheet Model */}
       <BottomSheet ref={bottomSheetRef}>
         <Box padding="m">
           <Box justifyContent="center" alignItems="center" paddingVertical="s">
@@ -155,6 +152,16 @@ export default function ComponentScreen({}: StackScreenProps<RootStackParamList,
           <Button label="close" onPress={() => close()} />
         </Box>
       </BottomSheet>
+
+      {/* Action sheet Model */}
+      <ActionSheet
+        ref={actionSheetRef}
+        actions={[
+          { label: 'Delete', onPress: () => console.log('delete') },
+          { label: 'Update', onPress: () => console.log('Update') },
+          { label: 'Call to action', onPress: () => console.log('call to action') },
+        ]}
+      />
     </>
   );
 }

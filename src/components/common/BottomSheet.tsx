@@ -93,7 +93,7 @@ interface BottomSheetProps {
   children: ReactNode;
 }
 
-class BottomSheetModal extends Component<BottomSheetModalProps> {
+export class BottomSheetModal extends Component<BottomSheetModalProps> {
   HEIGHT = 200;
   modalState = new Value<0 | 1 | 2>(0); // 0: start 1: intermediate 2: end
   velocityY = new Value(0);
@@ -239,11 +239,11 @@ const styles = StyleSheet.create({
  * Example of using BottomSheet
 
 import React from 'react';
-import useBottonSheet from 'src/hooks/useBottomSheet';
+import useBottomSheet from 'src/hooks/useBottomSheet';
 import { Button, Box, Text, BottomSheet } from 'src/components';
 
 const TestScreen = () => {
-  const { bottomSheetRef, open, close } = useBottonSheet();
+  const { bottomSheetRef, open, close } = useBottomSheet();
   return (
     <>
       <Box flex={1} justifyContent="center" alignItems="center">
