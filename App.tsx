@@ -4,7 +4,7 @@ enableScreens(true);
 
 import React from 'react';
 import { ThemeProvider } from '@shopify/restyle';
-import { StatusBar, useColorScheme } from 'react-native';
+import { useColorScheme } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import 'src/i18n';
@@ -17,7 +17,6 @@ const App = () => {
   return (
     <ThemeProvider theme={themeMode === 'light' ? theme.lightTheme : theme.darkTheme}>
       <SafeAreaProvider>
-        <StatusBar barStyle="dark-content" backgroundColor="white" />
         <SnackbarProvider>
           <Navigation />
         </SnackbarProvider>

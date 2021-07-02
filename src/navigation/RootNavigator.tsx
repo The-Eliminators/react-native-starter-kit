@@ -1,14 +1,17 @@
 import React from 'react';
 import { createStackNavigator, StackNavigationOptions } from '@react-navigation/stack';
-import { RootStackParamList } from './types';
+
+import type { RootStackParamList } from './types';
+
 import HomeScreen from 'src/features/HomeScreen';
-import ComponentScreen from 'src/features/ComponentScreen';
-import SettingScreen from 'src/features/SettingScreen';
 import TestScreen from 'src/features/TestScreen';
+import SettingScreen from 'src/features/SettingScreen';
+import ComponentScreen from 'src/features/ComponentScreen';
 
 const Stack = createStackNavigator<RootStackParamList>();
 const horizontalAnimation: StackNavigationOptions = {
   gestureDirection: 'horizontal',
+  headerShown: false,
   // gestureEnabled: true,
   cardStyleInterpolator: ({ current, layouts }) => {
     return {
@@ -29,10 +32,10 @@ const horizontalAnimation: StackNavigationOptions = {
 const RootNavigator = () => {
   return (
     <Stack.Navigator mode="modal" screenOptions={horizontalAnimation}>
-      <Stack.Screen name="HomeScreen" options={{ title: 'Home Screen' }} component={HomeScreen} />
-      <Stack.Screen name="ComponentScreen" options={{ title: 'Component Screen' }} component={ComponentScreen} />
-      <Stack.Screen name="SettingScreen" options={{ title: 'Settings Screen' }} component={SettingScreen} />
-      <Stack.Screen name="TestScreen" options={{ title: 'Test Screen' }} component={TestScreen} />
+      <Stack.Screen name="HomeScreen" component={HomeScreen} />
+      <Stack.Screen name="ComponentScreen" component={ComponentScreen} />
+      <Stack.Screen name="SettingScreen" component={SettingScreen} />
+      <Stack.Screen name="TestScreen" component={TestScreen} />
     </Stack.Navigator>
   );
 };

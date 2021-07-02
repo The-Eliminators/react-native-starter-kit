@@ -5,7 +5,18 @@ import { StackScreenProps } from '@react-navigation/stack';
 import { useTranslation } from 'react-i18next';
 import { RootStackParamList } from 'src/navigation/types';
 import { useSnackbar, useActionSheet, useBottomSheet } from 'src/hooks';
-import { Touchable, Text, Box, Surface, Separator, Button, Label, BottomSheet, ActionSheet } from 'src/components';
+import {
+  Touchable,
+  Text,
+  Box,
+  Surface,
+  Separator,
+  Button,
+  Label,
+  BottomSheet,
+  ActionSheet,
+  Screen,
+} from 'src/components';
 
 export default function ComponentScreen({}: StackScreenProps<RootStackParamList, 'ComponentScreen'>) {
   const { t, i18n } = useTranslation();
@@ -14,9 +25,19 @@ export default function ComponentScreen({}: StackScreenProps<RootStackParamList,
   const { actionSheetRef, open: openActionAheet } = useActionSheet();
 
   return (
-    <>
+    <Screen
+      headerColor="blue"
+      statusContentColor="dark-content"
+      title="Component Screen"
+      subtitle="Listed all components"
+      onSurfaceHighEmphasis="black"
+      onSurfaceMediumEmphasis="black"
+      menuActions={[
+        { icon: 'hi', onPress: () => Alert.alert('hi') },
+        { icon: 'hi', onPress: () => Alert.alert('hi') },
+      ]}>
       <ScrollView>
-        <Box flex={1} paddingHorizontal="m">
+        <Box flex={1} paddingHorizontal="m" paddingVertical="m">
           <Box paddingVertical="l" backgroundColor="primary" justifyContent="center" alignItems="center">
             <Text variant="subtitle" color="onPrimary">
               Hello, Here are the list custom project components.
@@ -162,6 +183,6 @@ export default function ComponentScreen({}: StackScreenProps<RootStackParamList,
           { label: 'Call to action', onPress: () => console.log('call to action') },
         ]}
       />
-    </>
+    </Screen>
   );
 }

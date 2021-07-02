@@ -229,7 +229,7 @@ const styles = StyleSheet.create({
   container: {
     position: 'absolute',
     width: Dimensions.get('screen').width,
-    height: Dimensions.get('screen').height - 80,
+    height: '100%',
     backgroundColor: 'rgba(1,1,1,0.6)',
   },
 });
