@@ -17,9 +17,12 @@ import SplashScreen from 'react-native-splash-screen';
 const App = () => {
   const themeMode = useColorScheme();
 
-  // Check when react navigation is ready
+  // Trigger when react navigation is ready
   const onNavigationReady = () => {
-    SplashScreen.hide(); // hide the splash screen after navigation ready
+    setTimeout(() => {
+      // In debuging mode you will find waiting more.
+      SplashScreen.hide(); // hide the splash screen after navigation ready.
+    }, 2000);
   };
 
   return (

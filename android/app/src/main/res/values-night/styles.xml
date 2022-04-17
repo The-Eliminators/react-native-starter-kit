@@ -5,6 +5,12 @@
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@color/background</item>
     </style>
+
+    <style name="MainActivityTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowBackground">@color/background</item>
+    </style>
+
     <style name="MySplashScreenTheme" parent="SplashScreen_SplashAnimation">
         <item name="android:statusBarColor" >@color/background</item>
         <item name="colorPrimaryDark">@color/background</item>

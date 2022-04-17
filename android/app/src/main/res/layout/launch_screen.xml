@@ -30,7 +30,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="24dp"
             android:gravity="center_horizontal"
             android:text="Powered by The Eliminators"
             android:textColor="?attr/textColor"
