@@ -1,18 +1,17 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="AppTheme" parent="Theme.ReactNative.AppCompat.Light">
-        <!-- Customize your theme here. -->
+<resources>
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <!-- Customize your dark theme here. -->
         <item name="android:windowDisablePreview">true</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@color/background</item>
     </style>
 
-    <style name="MainActivityTheme" parent="Theme.ReactNative.AppCompat.Light">
+    <style name="MainActivityTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
         <item name="android:windowIsTranslucent">false</item>
         <item name="android:windowBackground">@color/background</item>
     </style>
 
-    <style name="MySplashScreenTheme" parent="SplashScreen_SplashTheme">
-        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+    <style name="MySplashScreenTheme" parent="SplashScreen_SplashAnimation">
         <item name="android:statusBarColor" >@color/background</item>
         <item name="colorPrimaryDark">@color/background</item>
         <item name="backgroundColor">@color/background</item>
