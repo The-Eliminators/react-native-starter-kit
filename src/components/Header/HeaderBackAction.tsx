@@ -1,13 +1,13 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { ComponentPropsWithoutRef } from 'react';
+import React from 'react';
 
 import HeaderAction from './HeaderAction';
 
-type Props = ComponentPropsWithoutRef<typeof HeaderAction>;
+type Props = Omit<typeof HeaderAction, 'icon'>;
 
 const HeaderBackAction = ({ ...rest }: Props) => {
   const { goBack } = useNavigation();
-  return <HeaderAction onPress={goBack} bg="red" {...rest} />;
+  return <HeaderAction size={16} icon={'left-arrow'} onPress={goBack} {...rest} />;
 };
 
 export default HeaderBackAction;

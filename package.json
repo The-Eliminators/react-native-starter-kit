@@ -23,7 +23,8 @@
     "react-native-gesture-handler": "^1.10.3",
     "react-native-reanimated": "^2.2.0",
     "react-native-safe-area-context": "^3.2.0",
-    "react-native-screens": "^3.3.0"
+    "react-native-screens": "^3.3.0",
+    "react-native-vector-icons": "^9.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
@@ -32,6 +33,7 @@
     "@types/color": "^3.0.1",
     "@types/jest": "^26.0.23",
     "@types/react-native": "^0.64.5",
+    "@types/react-native-vector-icons": "^6.4.10",
     "@types/react-test-renderer": "^16.9.2",
     "babel-jest": "^26.6.3",
     "babel-plugin-module-resolver": "^4.1.0",
