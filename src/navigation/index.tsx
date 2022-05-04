@@ -6,12 +6,12 @@ import { Theme } from 'src/types/theme.type';
 import RootNavigator from './RootNavigator';
 import getNavigationTheme from 'src/theme/getNavigationTheme';
 
-const Navigation = () => {
+const Navigation = ({ onReady }: { onReady?: (() => void) | undefined }) => {
   const theme = useTheme<Theme>();
   const navigationTheme = getNavigationTheme(theme);
 
   return (
-    <NavigationContainer theme={navigationTheme}>
+    <NavigationContainer theme={navigationTheme} onReady={onReady}>
       <RootNavigator />
     </NavigationContainer>
   );
