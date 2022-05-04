@@ -23,7 +23,7 @@ const HeaderComponent = ({ color = 'surface', children, statusContentColor }: Pr
       height={56}
       alignItems="center"
       flexDirection="row"
-      paddingHorizontal="l"
+      paddingHorizontal="m"
       style={{ backgroundColor: bgColor }}>
       <StatusBar
         barStyle={statusContentColor ? statusContentColor : mode === 'dark' ? 'light-content' : 'dark-content'}

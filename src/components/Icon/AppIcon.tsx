@@ -1,11 +1,11 @@
 import React from 'react';
-import { useTheme } from '@shopify/restyle';
 import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 
 // User Defined
-import icomoonConfig from 'src/assets/fonts/iconConfig.json';
+import { useTheme } from 'src/hooks';
 import { IconName } from 'src/types/iconname.type';
-import { Theme, ThemeColors } from 'src/types/theme.type';
+import { ThemeColors } from 'src/types/theme.type';
+import icomoonConfig from 'src/assets/fonts/iconConfig.json';
 
 const IcoMoonIcon = createIconSetFromIcoMoon(icomoonConfig, 'icomoon', 'icomoon.ttf');
 
@@ -16,7 +16,7 @@ type IconProps = {
 };
 
 const AppIcon = ({ name, size = 24, color = 'primary', ...rest }: IconProps) => {
-  const { colors } = useTheme<Theme>();
+  const { colors } = useTheme();
   return <IcoMoonIcon name={name} size={size} color={colors[color]} {...rest} />;
 };
 

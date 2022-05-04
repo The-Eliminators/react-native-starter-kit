@@ -4,7 +4,7 @@ import { StackScreenProps } from '@react-navigation/stack';
 
 import { useTranslation } from 'react-i18next';
 import { RootStackParamList } from 'src/navigation/types';
-import { useSnackbar, useActionSheet, useBottomSheet } from 'src/hooks';
+import { useSnackbar, useActionSheet, useBottomSheet, useTheme } from 'src/hooks';
 import {
   Touchable,
   Text,
@@ -19,6 +19,7 @@ import {
 } from 'src/components';
 
 export default function ComponentScreen({}: StackScreenProps<RootStackParamList, 'ComponentScreen'>) {
+  // const { mode } = useTheme();
   const { t, i18n } = useTranslation();
   const showSnackbar = useSnackbar();
   const { bottomSheetRef, open, close } = useBottomSheet();
@@ -26,20 +27,20 @@ export default function ComponentScreen({}: StackScreenProps<RootStackParamList,
 
   return (
     <Screen
-      headerColor="blue"
-      statusContentColor="dark-content"
       title="Component Screen"
       subtitle="Listed all components"
-      onSurfaceHighEmphasis="black"
-      onSurfaceMediumEmphasis="black"
+      // headerColor="primary"
+      // statusContentColor={mode === 'light' ? 'light-content' : 'dark-content'}
+      // onSurfaceHighEmphasis="onPrimaryHighEmphasis"
+      // onSurfaceMediumEmphasis="onPrimaryMediumEmphasis"
       menuActions={[
-        { icon: 'hi', onPress: () => Alert.alert('hi') },
-        { icon: 'hi', onPress: () => Alert.alert('hi') },
+        { icon: 'edit', onPress: () => Alert.alert('hi') },
+        { icon: 'vertical-dots', onPress: () => Alert.alert('hi') },
       ]}>
       <ScrollView>
         <Box flex={1} paddingHorizontal="m" paddingVertical="m">
-          <Box paddingVertical="l" backgroundColor="primary" justifyContent="center" alignItems="center">
-            <Text variant="subtitle" color="onPrimary">
+          <Box paddingVertical="l" backgroundColor="blue" justifyContent="center" alignItems="center">
+            <Text variant="subtitle" color="onColor">
               Hello, Here are the list custom project components.
             </Text>
           </Box>

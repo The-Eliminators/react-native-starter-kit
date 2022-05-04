@@ -1,21 +1,21 @@
 import React from 'react';
 import type { ComponentPropsWithoutRef } from 'react';
 
+import AppIcon from '../Icon/AppIcon';
 import Touchable from '../Button/Touchable';
 import { ThemeColors } from 'src/types/theme.type';
-import AppIcon from '../Icon/Icon';
 import { IconName } from 'src/types/iconname.type';
 
-interface Props extends ComponentPropsWithoutRef<typeof Touchable> {
+export type THeaderAction = ComponentPropsWithoutRef<typeof Touchable> & {
   icon: IconName;
   size?: number;
   onPress?: () => void;
   color?: keyof ThemeColors;
   accessibilityLabel?: string;
-}
+};
 
-const HeaderAction = ({ icon, size = 24, color = 'black', accessibilityLabel, ...rest }: Props) => {
-  const buttonSize = size * 1.5;
+const HeaderAction = ({ icon, size = 18, color = 'onSurface', accessibilityLabel, ...rest }: THeaderAction) => {
+  const buttonSize = size * 2;
   return (
     <Touchable
       justifyContent={'center'}
