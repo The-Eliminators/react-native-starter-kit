@@ -231,6 +231,13 @@ const styles = StyleSheet.create({
     width: Dimensions.get('screen').width,
     height: '100%',
     backgroundColor: 'rgba(1,1,1,0.6)',
+    elevation: 10,
+    shadowColor: 'transparent',
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0,
   },
 });
 

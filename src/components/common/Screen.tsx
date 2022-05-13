@@ -1,55 +1,52 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import type { ComponentPropsWithoutRef } from 'react';
+import { ScrollViewProps, StatusBar } from 'react-native';
 
-import { Box, Header } from 'src/components';
-import HeaderContent from '../Header/HeaderContent';
-import { THeaderAction } from '../Header/HeaderAction';
-import type { ThemeColors } from 'src/types/theme.type';
+import { Box } from 'src/components';
+import { useTheme } from 'src/hooks';
+import ScrollView from './ScrollView';
 
 type TScreen = {
-  title: string;
-  subtitle?: string;
-  headerColor?: keyof ThemeColors;
-  titleColor?: keyof ThemeColors;
-  subtitleColor?: keyof ThemeColors;
   children: React.ReactNode;
+  scrollEnabled?: boolean;
+  hideStatusBar?: boolean;
+  scrollViewProps?: ScrollViewProps;
   statusContentColor?: 'dark-content' | 'light-content';
-  menuActions?: THeaderAction[];
-  renderLeftHeader?: ((color: keyof ThemeColors) => JSX.Element) | null;
-  renderHeaderTitle?: (props: ComponentPropsWithoutRef<typeof HeaderContent>) => JSX.Element;
 } & ComponentPropsWithoutRef<typeof Box>; // All the property of Box will pass to children
 
 const Screen = ({
-  title,
-  subtitle,
-  titleColor = 'onSurfaceHighEmphasis',
-  subtitleColor = 'onSurfaceMediumEmphasis',
   statusContentColor,
-  headerColor,
   children,
-  menuActions,
-  renderLeftHeader = (color: keyof ThemeColors) => <Header.BackAction color={color} />,
-  renderHeaderTitle = (props: ComponentPropsWithoutRef<typeof HeaderContent>) => <Header.Content {...props} />,
+  scrollEnabled = false,
+  hideStatusBar = false,
+  scrollViewProps,
   ...childrenProps
 }: TScreen) => {
+  const { mode } = useTheme();
+  const WrapperComponent = scrollEnabled ? ScrollView : Box;
+
+  useEffect(() => {
+    StatusBar.setBarStyle(statusContentColor ? statusContentColor : mode === 'dark' ? 'light-content' : 'dark-content');
+  }, [statusContentColor, mode]);
+
+  const renderWrapperComponent = () => (
+    <WrapperComponent flex={1} {...childrenProps} {...scrollViewProps}>
+      {children}
+    </WrapperComponent>
+  );
+
+  if (hideStatusBar) {
+    return renderWrapperComponent();
+  }
+
   return (
-    <>
-      <Header color={headerColor} statusContentColor={statusContentColor}>
-        {renderLeftHeader?.(titleColor)}
-        {renderHeaderTitle({
-          title,
-          subtitle,
-          titleColor: titleColor,
-          subtitleColor: subtitleColor,
-        })}
-        {menuActions?.map((actions, index) => (
-          <Header.Action color={titleColor} {...actions} key={`header-action${index}`} />
-        ))}
-      </Header>
-      <Box flex={1} {...childrenProps}>
-        {children}
-      </Box>
-    </>
+    <Box
+      flex={1}
+      backgroundColor={childrenProps.backgroundColor}
+      bg={childrenProps.bg}
+      style={{ paddingTop: StatusBar.currentHeight }}>
+      {renderWrapperComponent()}
+    </Box>
   );
 };
 
