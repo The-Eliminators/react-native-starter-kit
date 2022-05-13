@@ -1,9 +1,8 @@
 import React from 'react';
-import AssetsImage from 'src/constant/AssetsImage';
 import Image, { TImage } from '../common/Image';
+import AssetsImage from 'src/constant/AssetsImage';
 
 export type TAvatarImage = {
-  // source: string;
   size?: number;
 } & TImage;
 
