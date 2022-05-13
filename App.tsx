@@ -20,7 +20,7 @@ const App = () => {
     setTimeout(() => {
       // In debugging mode you will find waiting more.
       SplashScreen.hide(); // hide the splash screen after navigation ready.
-    }, 2000);
+    }, 1000);
   };
 
   return (
