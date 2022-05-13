@@ -3,11 +3,11 @@ import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 
 // User Defined
 import { useTheme } from 'src/hooks';
-import { IconName } from 'src/types/iconname.type';
+import { IconName } from 'src/types/iconName.type';
 import { ThemeColors } from 'src/types/theme.type';
-import icomoonConfig from 'src/assets/fonts/iconConfig.json';
+import icoMoonConfig from 'src/assets/fonts/iconConfig.json';
 
-const IcoMoonIcon = createIconSetFromIcoMoon(icomoonConfig, 'icomoon', 'icomoon.ttf');
+const IcoMoonIcon = createIconSetFromIcoMoon(icoMoonConfig, 'icomoon', 'icomoon.ttf');
 
 type IconProps = {
   name: IconName;

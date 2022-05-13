@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Alert, ScrollView } from 'react-native';
+import { Alert } from 'react-native';
 import { StackScreenProps } from '@react-navigation/stack';
 
 import { useTranslation } from 'react-i18next';
@@ -15,151 +15,170 @@ import {
   Label,
   BottomSheet,
   ActionSheet,
-  Screen,
+  HeaderScreen,
+  Avatar,
 } from 'src/components';
+import AssetsImage from 'src/constant/AssetsImage';
 
 export default function ComponentScreen({}: StackScreenProps<RootStackParamList, 'ComponentScreen'>) {
-  // const { mode } = useTheme();
+  const { mode } = useTheme();
   const { t, i18n } = useTranslation();
   const showSnackbar = useSnackbar();
   const { bottomSheetRef, open, close } = useBottomSheet();
-  const { actionSheetRef, open: openActionAheet } = useActionSheet();
+  const { actionSheetRef, open: openActionSheet } = useActionSheet();
 
   return (
-    <Screen
-      title="Component Screen"
-      subtitle="Listed all components"
-      // headerColor="primary"
-      // statusContentColor={mode === 'light' ? 'light-content' : 'dark-content'}
-      // onSurfaceHighEmphasis="onPrimaryHighEmphasis"
-      // onSurfaceMediumEmphasis="onPrimaryMediumEmphasis"
-      menuActions={[
-        { icon: 'edit', onPress: () => Alert.alert('hi') },
-        { icon: 'vertical-dots', onPress: () => Alert.alert('hi') },
-      ]}>
-      <ScrollView>
-        <Box flex={1} paddingHorizontal="m" paddingVertical="m">
-          <Box paddingVertical="l" backgroundColor="blue" justifyContent="center" alignItems="center">
-            <Text variant="subtitle" color="onColor">
-              Hello, Here are the list custom project components.
+    <>
+      <HeaderScreen
+        title="Component Screen"
+        subtitle="Listed all components"
+        headerColor="primary"
+        statusContentColor={mode === 'light' ? 'light-content' : 'dark-content'}
+        titleColor="onPrimaryHighEmphasis"
+        subtitleColor="onPrimaryMediumEmphasis"
+        menuActions={[
+          { icon: 'edit', onPress: () => Alert.alert('hi') },
+          { icon: 'vertical-dots', onPress: () => Alert.alert('hi') },
+        ]}
+        scrollEnabled={true}
+        padding="m">
+        {/* Theming support */}
+        <Box paddingBottom="m">
+          <Text variant="heading">1. Theming Support</Text>
+          <Text paddingStart="m">Change the system theme to see the effect.</Text>
+        </Box>
+
+        <Separator width={2} />
+
+        {/* Typography Demo */}
+        <Box backgroundColor="background" pt="m">
+          <Text variant="heading">2. Typography (Text Component)</Text>
+          <Box p="xl">
+            <Text variant="headline">HeadLine</Text>
+            <Text variant="title">Title</Text>
+            <Text variant="heading">Heading</Text>
+            <Text variant="subtitle">Subtitle</Text>
+            <Text variant="body">Body</Text>
+            <Text variant="caption">Caption</Text>
+            <Text variant="subtitle" weight="medium">
+              Subtitle bold
             </Text>
           </Box>
+        </Box>
 
-          {/* Typography Demo */}
-          <Box backgroundColor="background" pt="m">
-            <Text variant="heading">Typography (Text Component)</Text>
-            <Box p="xl">
-              <Text variant="headline">HeadLine</Text>
-              <Text variant="title">Title</Text>
-              <Text variant="heading">Heading</Text>
-              <Text variant="subtitle">Subtitle</Text>
-              <Text variant="body">Body</Text>
-              <Text variant="caption">Caption</Text>
-              <Text variant="subtitle" weight="medium">
-                Subtitle bold
-              </Text>
-            </Box>
-          </Box>
+        <Separator width={2} />
 
-          <Separator width={2} />
+        {/* Avatar */}
+        <Text variant="heading" marginVertical="s">
+          3. Avatar
+        </Text>
+        <Box flexDirection={'row'} paddingBottom="s">
+          <Avatar source={AssetsImage.Person} label="Mosh" />
+          <Avatar label="Virat Kohli" marginStart="l" />
+          <Avatar label="Dhoni" backgroundColor="blue" marginStart="l" />
+        </Box>
 
-          {/* Touchable and Button demo */}
-          <Box pt="s">
-            <Text variant="heading">Touchable Components Component</Text>
-            <Button label="Button Click me" onPress={() => console.log('clicked')} />
+        <Separator width={2} />
 
-            <Touchable padding="l" margin="s" borderRadius={8} backgroundColor="primary">
-              <Text color="onPrimaryHighEmphasis" variant="subtitle">
-                Touchable Component
-              </Text>
-              <Text pt="xs" color="onPrimaryHighEmphasis" variant="body">
-                Same as TouchableOpacity but with restyle props
-              </Text>
-            </Touchable>
-          </Box>
-
-          {/* Surface Component*/}
-          <Surface elevation={2} padding="l" margin="s" borderRadius={15}>
-            <Text variant="heading">Surface Component</Text>
+        {/* Surface Component*/}
+        <Box paddingVertical="m">
+          <Text variant="heading" marginVertical="s" children={'4. Surface Component'} />
+          <Surface elevation={2} padding="l" borderRadius={12}>
+            <Text variant="heading">Card Heading </Text>
             <Text pt="s">
               Surface is a basic container that can give depth to an element with elevation shadow. On dark theme, white
               overlay over a component surface. On Light Theme, container has shadow.
             </Text>
           </Surface>
-
-          {/* Bottom Sheet Example */}
-          <Separator width={2} marginVertical="s" />
-          <Text variant="heading">Bottom Sheet</Text>
-          <Box flex={1} flexDirection="row" flexWrap="wrap" justifyContent="space-around">
-            <Button label="Open Botton Sheet" onPress={() => open()} />
-            <Button label="Open Action Sheet" onPress={() => openActionAheet()} />
-          </Box>
-
-          {/* Snackbar Example */}
-          <Separator width={2} marginVertical="s" />
-          <Text variant="heading">Snackbar</Text>
-          <Box flex={1} flexDirection="row" flexWrap="wrap" justifyContent="space-around">
-            <Button
-              label="show Snackbar"
-              width="40%"
-              onPress={() => showSnackbar({ text: 'Show the text on Snackbar', type: 'success' })}
-            />
-            <Button
-              label="with action"
-              width="40%"
-              onPress={() =>
-                showSnackbar({
-                  text: 'Show the text on Snackbar',
-                  action: { label: 'ok', onPress: () => Alert.alert('hello') },
-                  duration: 'long',
-                  type: 'info',
-                })
-              }
-            />
-            <Button
-              label="Warning"
-              width="40%"
-              onPress={() =>
-                showSnackbar({
-                  text: 'Show the text on Snackbar',
-                  action: { label: 'Undo', onPress: () => Alert.alert('hello') },
-                  duration: 'long',
-                  type: 'warning',
-                })
-              }
-            />
-            <Button
-              label="error"
-              width="40%"
-              onPress={() =>
-                showSnackbar({
-                  text: 'Show the text on Snackbar',
-                  action: { label: 'Undo', onPress: () => Alert.alert('hello') },
-                  duration: 'long',
-                  type: 'error',
-                })
-              }
-            />
-          </Box>
-          <Separator width={2} />
-
-          {/* i18n Support */}
-          <Box padding="m">
-            <Text variant="heading">i18n Support</Text>
-            <Box flex={1} flexDirection="row" justifyContent="space-around">
-              <Button label="English" width="40%" onPress={() => i18n.changeLanguage('en')} />
-              <Button label="Marathi" width="40%" onPress={() => i18n.changeLanguage('mr')} />
-            </Box>
-            <Label variant="subtitle" name="labelComponent" />
-            <Label name="hiMessage" />
-            <Label variant="heading" name="myNameIs" />
-            <Label variant="title" name="helloWorld" />
-            <Text>{t('tFunctionEg')}</Text>
-          </Box>
-          <Separator width={2} />
         </Box>
-      </ScrollView>
 
+        <Separator width={2} />
+
+        {/* Touchable and Button demo */}
+        <Box pt="s">
+          <Text variant="heading">5. Touchable Components Component</Text>
+          <Button label="Button Click me" onPress={() => console.log('clicked')} />
+
+          <Touchable padding="l" margin="s" borderRadius={8} backgroundColor="primary">
+            <Text color="onPrimaryHighEmphasis" variant="subtitle">
+              Touchable Component
+            </Text>
+            <Text pt="xs" color="onPrimaryHighEmphasis" variant="body">
+              Same as TouchableOpacity but with restyle props
+            </Text>
+          </Touchable>
+        </Box>
+
+        {/* Bottom Sheet Example */}
+        <Separator width={2} marginVertical="s" />
+        <Text variant="heading"> 6. Bottom Sheet</Text>
+        <Box flex={1} flexDirection="row" flexWrap="wrap" justifyContent="space-around">
+          <Button label="Open Botton Sheet" onPress={() => open()} />
+          <Button label="Open Action Sheet" onPress={() => openActionSheet()} />
+        </Box>
+
+        {/* Snackbar Example */}
+        <Separator width={2} marginVertical="s" />
+        <Text variant="heading">7. Snackbar</Text>
+        <Box flex={1} flexDirection="row" flexWrap="wrap" justifyContent="space-around">
+          <Button
+            label="show Snackbar"
+            width="40%"
+            onPress={() => showSnackbar({ text: 'Show the text on Snackbar', type: 'success' })}
+          />
+          <Button
+            label="with action"
+            width="40%"
+            onPress={() =>
+              showSnackbar({
+                text: 'Show the text on Snackbar',
+                action: { label: 'ok', onPress: () => Alert.alert('hello') },
+                duration: 'long',
+                type: 'info',
+              })
+            }
+          />
+          <Button
+            label="Warning"
+            width="40%"
+            onPress={() =>
+              showSnackbar({
+                text: 'Show the text on Snackbar',
+                action: { label: 'Undo', onPress: () => Alert.alert('hello') },
+                duration: 'long',
+                type: 'warning',
+              })
+            }
+          />
+          <Button
+            label="error"
+            width="40%"
+            onPress={() =>
+              showSnackbar({
+                text: 'Show the text on Snackbar',
+                action: { label: 'Undo', onPress: () => Alert.alert('hello') },
+                duration: 'long',
+                type: 'error',
+              })
+            }
+          />
+        </Box>
+        <Separator width={2} />
+
+        {/* i18n Support */}
+        <Box paddingVertical="m">
+          <Text variant="heading">8. i18n Support</Text>
+          <Box flex={1} flexDirection="row" justifyContent="space-around">
+            <Button label="English" width="40%" onPress={() => i18n.changeLanguage('en')} />
+            <Button label="Marathi" width="40%" onPress={() => i18n.changeLanguage('mr')} />
+          </Box>
+          <Label variant="subtitle" name="labelComponent" />
+          <Label name="hiMessage" />
+          <Label variant="heading" name="myNameIs" />
+          <Label variant="title" name="helloWorld" />
+          <Text>{t('tFunctionEg')}</Text>
+        </Box>
+      </HeaderScreen>
       {/* Bottom Sheet Model */}
       <BottomSheet ref={bottomSheetRef}>
         <Box padding="m">
@@ -184,6 +203,6 @@ export default function ComponentScreen({}: StackScreenProps<RootStackParamList,
           { label: 'Call to action', onPress: () => console.log('call to action') },
         ]}
       />
-    </Screen>
+    </>
   );
 }
