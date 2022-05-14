@@ -13,10 +13,10 @@ type TextProps = React.ComponentProps<typeof RestyleText> & {
 };
 
 const Label = ({ name, weight, ...props }: TextProps) => {
-  const fontFmaily = weight ? getFontFamily(weight) : null;
+  const fontFamily = weight ? getFontFamily(weight) : null;
   const { t } = useTranslation();
   return (
-    <RestyleText {...fontFmaily} {...props}>
+    <RestyleText {...fontFamily} {...props}>
       {t(name)}
     </RestyleText>
   );
