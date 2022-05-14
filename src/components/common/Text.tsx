@@ -11,9 +11,9 @@ type TextProps = React.ComponentProps<typeof RestyleText> & {
 };
 
 const Text = ({ children, weight, ...props }: TextProps) => {
-  const fontFmaily = weight ? getFontFamily(weight) : null;
+  const fontFamily = weight ? getFontFamily(weight) : null;
   return (
-    <RestyleText {...fontFmaily} {...props}>
+    <RestyleText {...fontFamily} {...props}>
       {children}
     </RestyleText>
   );
