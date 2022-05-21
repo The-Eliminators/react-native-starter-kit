@@ -56,6 +56,7 @@ export type ThemeColors = {
   onSurfaceLowEmphasis: string;
   onSurfaceDisableEmphasis: string;
   onSurfaceOutline: string;
+  onSurfaceOverlay: string;
 
   onPrimaryHighEmphasis: string;
   onPrimaryMediumEmphasis: string;
@@ -85,6 +86,7 @@ export type Breakpoints = {
 
 export type ThemeSpacing = {
   none: number;
+  xxxs: number;
   xxs: number;
   xs: number;
   s: number;
