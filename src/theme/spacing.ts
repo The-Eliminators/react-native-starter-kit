@@ -2,6 +2,7 @@ import { ThemeSpacing } from 'src/types/theme.type';
 
 const spacing: ThemeSpacing = {
   none: 0,
+  xxxs: 1,
   xxs: 2,
   xs: 4,
   s: 8,

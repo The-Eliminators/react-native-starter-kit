@@ -18,9 +18,10 @@ export const lightThemeColor = {
 
   onSurfaceHighEmphasis: 'rgba(0, 0, 0, 0.87)',
   onSurfaceMediumEmphasis: 'rgba(0, 0, 0, 0.6)',
-  onSurfaceLowEmphasis: 'rgba(0, 0, 0, 0.45)',
+  onSurfaceLowEmphasis: 'rgba(0, 0, 0, 0.42)',
   onSurfaceDisableEmphasis: 'rgba(0, 0, 0, 0.38)',
   onSurfaceOutline: 'rgba(255, 255, 255, 0.12)',
+  onSurfaceOverlay: 'rgba(33, 33, 33, 0.08)',
 
   onPrimaryHighEmphasis: '#FFFFFF',
   onPrimaryMediumEmphasis: 'rgba(255, 255, 255, 0.74)',
@@ -63,9 +64,10 @@ export const darkThemeColor: typeof lightThemeColor = {
 
   onSurfaceHighEmphasis: 'rgba(255, 255, 255, 0.87)',
   onSurfaceMediumEmphasis: 'rgba(255, 255, 255, 0.6)',
-  onSurfaceLowEmphasis: 'rgba(255, 255, 255, 0.45)',
+  onSurfaceLowEmphasis: 'rgba(255, 255, 255, 0.42)',
   onSurfaceDisableEmphasis: 'rgba(255, 255, 255, 0.38)',
   onSurfaceOutline: 'rgba(255, 255, 255, 0.12)',
+  onSurfaceOverlay: 'rgba(255, 255, 255, 0.08)',
 
   onPrimaryHighEmphasis: '#1E1E1E',
   onPrimaryMediumEmphasis: 'rgba(0, 0, 0, 0.74)',
