@@ -17,6 +17,8 @@ import {
   ActionSheet,
   HeaderScreen,
   Avatar,
+  TextInput,
+  AppIcon,
 } from 'src/components';
 import AssetsImage from 'src/constant/AssetsImage';
 
@@ -109,9 +111,13 @@ export default function ComponentScreen({}: StackScreenProps<RootStackParamList,
           </Touchable>
         </Box>
 
+        {/* Input Field */}
+        <Separator width={2} marginVertical="s" />
+        <TextInputSample />
+
         {/* Bottom Sheet Example */}
         <Separator width={2} marginVertical="s" />
-        <Text variant="heading"> 6. Bottom Sheet</Text>
+        <Text variant="heading"> 7. Bottom Sheet</Text>
         <Box flex={1} flexDirection="row" flexWrap="wrap" justifyContent="space-around">
           <Button label="Open Botton Sheet" onPress={() => open()} />
           <Button label="Open Action Sheet" onPress={() => openActionSheet()} />
@@ -119,7 +125,7 @@ export default function ComponentScreen({}: StackScreenProps<RootStackParamList,
 
         {/* Snackbar Example */}
         <Separator width={2} marginVertical="s" />
-        <Text variant="heading">7. Snackbar</Text>
+        <Text variant="heading">8. Snackbar</Text>
         <Box flex={1} flexDirection="row" flexWrap="wrap" justifyContent="space-around">
           <Button
             label="show Snackbar"
@@ -167,7 +173,7 @@ export default function ComponentScreen({}: StackScreenProps<RootStackParamList,
 
         {/* i18n Support */}
         <Box paddingVertical="m">
-          <Text variant="heading">8. i18n Support</Text>
+          <Text variant="heading">9. i18n Support</Text>
           <Box flex={1} flexDirection="row" justifyContent="space-around">
             <Button label="English" width="40%" onPress={() => i18n.changeLanguage('en')} />
             <Button label="Marathi" width="40%" onPress={() => i18n.changeLanguage('mr')} />
@@ -206,3 +212,44 @@ export default function ComponentScreen({}: StackScreenProps<RootStackParamList,
     </>
   );
 }
+
+const TextInputSample = () => {
+  return (
+    <>
+      <Text variant="heading"> 6. Input Fields </Text>
+      <Box paddingVertical="xxxl">
+        <TextInput
+          leftRender={({ color }) => <AppIcon name="user" size={22} color={color} />}
+          label="Name*"
+          placeholder="Full Name"
+          assistiveText="Required"
+        />
+        <Box paddingTop="l" />
+        <TextInput
+          leftRender={({ color }) => <AppIcon name="mail" size={22} color={color} />}
+          label="Email"
+          defaultValue="example@gmail.com"
+        />
+        <Box paddingTop="l" />
+        <TextInput
+          label="Password"
+          secureTextEntry={true}
+          leftRender={({ color }) => <AppIcon name="settings" size={22} color={color} />}
+          rightRender={({ color }) => <AppIcon name="hide" size={24} color={color} />}
+        />
+        {/* <Box padding="m" />
+      <TextInput label="Wrong" assistiveText="Assistive text" error errorMessage="Something went wrong" /> */}
+        {/* <Box padding="m" />
+      <TextInput
+        label="Note"
+        assistiveText="Write your notes"
+        errorMessage="Something went wrong"
+        // eslint-disable-next-line react-native/no-inline-styles
+        leftRender={({ color }) => <AppIcon name="edit" size={20} color={color} style={{ flex: 1, paddingTop: 20 }} />}
+        multiline
+        defaultValue="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+      /> */}
+      </Box>
+    </>
+  );
+};
