@@ -1,11 +1,10 @@
 import React from 'react';
-
-import { Text, HeaderScreen } from 'src/components';
+import { HeaderScreen, Text } from 'src/components';
 
 const TestScreen = () => {
   return (
-    <HeaderScreen title="Test Screen" justifyContent="center" alignItems="center">
-      <Text> Test Component: Discard all changes after done</Text>
+    <HeaderScreen title="Test Screen" padding="m" justifyContent="center" alignItems="center">
+      <Text>Use this screen for testing purpose</Text>
     </HeaderScreen>
   );
 };

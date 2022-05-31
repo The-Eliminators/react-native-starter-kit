@@ -26,3 +26,6 @@ export { default as AppIcon } from './Icon/AppIcon';
 
 // Header
 export { default as Header } from './Header';
+
+// Input
+export { default as TextInput } from './Input/TextInput';
