@@ -8,7 +8,6 @@
 1. Custom Components with style utilities support
 1. Splash Screen with theme support
 1. Custom Icon font
-1.
 
 ## Custom components
 
@@ -21,3 +20,4 @@
 1. SnackBar
 1. Bottom Sheet
 1. Action Sheet
+2. TextInput
