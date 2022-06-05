@@ -1,8 +1,14 @@
 import React from 'react';
-import { TextInput as NativeTextInput, TextInputProps, OpaqueColorValue, StyleProp, TextStyle } from 'react-native';
+import {
+  TextInput as NativeTextInput,
+  TextInputProps,
+  OpaqueColorValue,
+  StyleProp,
+  TextStyle,
+  ViewStyle,
+} from 'react-native';
 
 import { ThemeColors } from 'src/types/theme.type';
-import { IconName } from 'src/types/iconName.type';
 
 export type RenderProps = {
   ref: (a?: NativeTextInput | null) => void;
@@ -23,9 +29,6 @@ export type RenderProps = {
 export type TInput = {
   leftRender?: (props: SideRenderProps) => React.ReactNode;
   rightRender?: (props: SideRenderProps) => React.ReactNode;
-
-  leftIcon?: IconName;
-  rightIcon?: IconName;
 
   /** If true, user won't be able to interact with the component. */
   disabled?: boolean;
@@ -64,21 +67,35 @@ export type TInput = {
   /** Callback to render a custom input component such as `react-native-text-input-mask` */
   render?: (props: RenderProps) => React.ReactNode;
 
-  /**
-   * Value of the text input.
-   */
+  /** Value of the text input. */
   value?: string;
 
   defaultValue?: string;
+
+  /** Style object */
+  labelStyle?: StyleProp<TextStyle>;
+  containerStyle?: StyleProp<ViewStyle>;
+  innerContainerStyle?: StyleProp<ViewStyle>;
+
+  /** onColors */
+  inputStateOnColors?: InputStateOnColors;
 } & TextInputProps;
 
-export type InputTextState = 'error' | 'disabled' | 'focused' | 'hasValue' | 'normal';
+export type TextInputState = 'error' | 'disabled' | 'focused' | 'hasValue' | 'normal';
+
+export type TextInputStateProperty = 'labelColor' | 'inputTextColor' | 'underlineColor' | 'assistiveTextColor';
 
 export type SideRenderProps = {
   color: keyof ThemeColors;
-  state: InputTextState;
+  state: TextInputState;
 };
 
 export type TextInputHandles = Pick<NativeTextInput, 'focus' | 'clear' | 'blur' | 'isFocused' | 'setNativeProps'>;
 
-export type TStateColors = { [state: string]: { [color: string]: keyof ThemeColors } };
+export type InputStateOnColors = {
+  [state in TextInputState]?: { [property in TextInputStateProperty]?: keyof ThemeColors };
+};
+
+export type TStateColors = InputStateOnColors & {
+  normal: { [property in TextInputStateProperty]: keyof ThemeColors };
+};

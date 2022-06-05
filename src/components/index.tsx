@@ -23,9 +23,11 @@ export { default as AvatarImage } from './Avatar/AvatarImage';
 
 // Icon
 export { default as AppIcon } from './Icon/AppIcon';
+export { default as IconButton } from './Icon/IconButton';
 
 // Header
 export { default as Header } from './Header';
 
 // Input
 export { default as TextInput } from './Input/TextInput';
+export { default as TextInputWithSuggestion } from './Input/TextInputWithSuggestion';

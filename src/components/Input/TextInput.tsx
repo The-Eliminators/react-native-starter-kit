@@ -3,13 +3,12 @@ import { TextInput as NativeTextInput, Animated } from 'react-native';
 
 import Box from '../common/Box';
 import Text from '../common/Text';
-import { useTheme } from 'src/hooks';
 import typography from 'src/theme/typography';
-import useBoolean from 'src/hooks/useBoolean';
+import { useTheme, useBoolean } from 'src/hooks';
 import useLabelAnimationValue from './useLabelAnimationValue';
-import type { InputTextState, TextInputHandles, TInput, TStateColors } from './types';
+import type { TextInputState, TextInputHandles, TInput, TStateColors } from './types';
 
-const StateColors: TStateColors = {
+export const TextInputStateOnColors: TStateColors = {
   normal: {
     labelColor: 'onSurfaceMediumEmphasis',
     inputTextColor: 'onSurfaceHighEmphasis',
@@ -18,29 +17,27 @@ const StateColors: TStateColors = {
   },
   focused: {
     labelColor: 'primary',
-    inputTextColor: 'onSurfaceHighEmphasis',
     underlineColor: 'primary',
     assistiveTextColor: 'primary',
   },
   error: {
     labelColor: 'error',
-    inputTextColor: 'onSurfaceHighEmphasis',
     underlineColor: 'error',
     assistiveTextColor: 'error',
   },
   hasValue: {
     labelColor: 'onSurfaceDisableEmphasis',
-    inputTextColor: 'onSurfaceHighEmphasis',
-    underlineColor: 'onSurfaceLowEmphasis',
-    assistiveTextColor: 'onSurfaceMediumEmphasis',
   },
   disabled: {
     labelColor: 'onSurfaceDisableEmphasis',
     inputTextColor: 'onSurfaceDisableEmphasis',
-    underlineColor: 'onSurfaceDisableEmphasis',
     assistiveTextColor: 'onSurfaceDisableEmphasis',
   },
 };
+
+function getTextInputState(disabled: boolean, error: boolean, isFocused: boolean, hasValue: boolean): TextInputState {
+  return disabled ? 'disabled' : error ? 'error' : isFocused ? 'focused' : hasValue ? 'hasValue' : 'normal';
+}
 
 const TextInput = React.forwardRef<TextInputHandles, TInput>(
   (
@@ -49,18 +46,21 @@ const TextInput = React.forwardRef<TextInputHandles, TInput>(
       onChangeText,
       editable = true,
       disabled = false,
+      error = false,
       defaultValue,
       label,
-      error,
       errorMessage,
       placeholder,
       assistiveText,
       onFocus,
       onBlur,
-      multiline,
-      numberOfLines,
       leftRender,
       rightRender,
+      style, // TextInput Style
+      labelStyle,
+      containerStyle,
+      innerContainerStyle,
+      inputStateOnColors,
       ...rest
     },
     ref,
@@ -77,16 +77,13 @@ const TextInput = React.forwardRef<TextInputHandles, TInput>(
     const hasValue = !!value; // To avoid multiple runs of useEffect whenever value update
     const { value: isFocused, setTrue: focus, setFalse: blur } = useBoolean(false);
 
-    const state: InputTextState = disabled
-      ? 'disabled'
-      : error
-      ? 'error'
-      : isFocused
-      ? 'focused'
-      : hasValue
-      ? 'hasValue'
-      : 'normal';
-    const { labelColor, underlineColor, assistiveTextColor, inputTextColor } = StateColors[state];
+    const state = getTextInputState(disabled, error, isFocused, hasValue);
+    const { labelColor, underlineColor, assistiveTextColor, inputTextColor } = {
+      ...TextInputStateOnColors.normal,
+      ...TextInputStateOnColors[state],
+      ...inputStateOnColors?.[state],
+    };
+
     const sideElementColor = disabled ? 'onSurfaceDisableEmphasis' : 'onSurfaceMediumEmphasis';
 
     // Label Animation props
@@ -123,30 +120,33 @@ const TextInput = React.forwardRef<TextInputHandles, TInput>(
     };
 
     return (
-      <Box width="100%">
+      <>
         <Box
           minHeight={56}
           bg="onSurfaceOverlay"
-          paddingStart="xs"
-          borderTopStartRadius={4}
-          borderTopEndRadius={4}
+          paddingHorizontal="xs"
+          borderRadius={4}
           flexDirection="row"
-          alignItems="center">
+          alignItems="center"
+          style={containerStyle}>
           {leftRender && <Box paddingStart="m">{leftRender({ color: sideElementColor, state })}</Box>}
-          <Box minHeight={56} flex={1} justifyContent="flex-end">
+          <Box flex={1} style={innerContainerStyle}>
             {/* Label */}
             <Animated.View pointerEvents="none">
               <Animated.Text
-                // eslint-disable-next-line react-native/no-inline-styles
-                style={{
-                  fontSize: labelAnimation.fontSize,
-                  lineHeight: labelAnimation.lineHeight,
-                  position: 'absolute',
-                  top: labelAnimation.topHeight,
-                  zIndex: 2,
-                  paddingStart: 12,
-                  color: colors[labelColor],
-                }}>
+                style={[
+                  // eslint-disable-next-line react-native/no-inline-styles
+                  {
+                    fontSize: labelAnimation.fontSize,
+                    lineHeight: labelAnimation.lineHeight,
+                    position: 'absolute',
+                    top: labelAnimation.topHeight,
+                    zIndex: 2,
+                    paddingStart: 12,
+                    color: colors[labelColor],
+                  },
+                  labelStyle,
+                ]}>
                 {label}
               </Animated.Text>
             </Animated.View>
@@ -154,8 +154,6 @@ const TextInput = React.forwardRef<TextInputHandles, TInput>(
             {render({
               ref: tRef => (root.current = tRef),
               value,
-              multiline,
-              numberOfLines,
               placeholder: isFocused ? placeholder : '',
               editable: !disabled && editable,
               onFocus: e => {
@@ -173,23 +171,25 @@ const TextInput = React.forwardRef<TextInputHandles, TInput>(
                 typography.subtitle,
                 {
                   color: colors[inputTextColor],
+                  lineHeight: 24,
                   paddingStart: 12,
-                  paddingBottom: 8,
+                  paddingBottom: 4,
                   paddingTop: 20,
-                  textAlignVertical: 'bottom',
+                  textAlignVertical: 'center',
                 },
+                style, // textField style
               ],
               ...rest,
             })}
           </Box>
-          {rightRender && <Box paddingEnd="m">{rightRender({ color: sideElementColor, state })}</Box>}
+          {rightRender && <Box>{rightRender({ color: sideElementColor, state })}</Box>}
           <Animated.View
             style={[
               // eslint-disable-next-line react-native/no-inline-styles
               { position: 'absolute', left: 0, right: 0, bottom: 0, height: 2, zIndex: 1 },
               {
                 backgroundColor: colors[underlineColor],
-                transform: [{ scaleY: isFocused ? 1 : 0.5 }],
+                transform: [{ scaleY: isFocused ? 1 : error ? 0.5 : 0 }],
               },
             ]}
           />
@@ -199,7 +199,7 @@ const TextInput = React.forwardRef<TextInputHandles, TInput>(
             {error ? errorMessage + '' : assistiveText}
           </Text>
         )}
-      </Box>
+      </>
     );
   },
 );
