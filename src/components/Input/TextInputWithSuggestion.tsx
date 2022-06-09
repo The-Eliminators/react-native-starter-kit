@@ -6,10 +6,11 @@ import TextInput from './TextInput';
 import Surface from '../common/Surface';
 import Touchable from '../Button/Touchable';
 import { TextInputHandles, TInput } from './types';
-import { StyleProp, View, ViewStyle } from 'react-native';
+import { ScrollViewProps, StyleProp, View, ViewStyle } from 'react-native';
+import ScrollView from '../common/ScrollView';
 
 type BaseListItem = {
-  title: string;
+  label: string;
 };
 
 type Props<T extends BaseListItem> = {
@@ -18,11 +19,12 @@ type Props<T extends BaseListItem> = {
   renderItem?: (item: T, index: number) => ReactNode;
   filter?: (item: T, searchText: string) => boolean;
   suggestionBoxStyle?: StyleProp<ViewStyle>;
+  scrollViewProps?: ScrollViewProps;
 } & TInput;
 
-const BasicItemRender = ({ title }: BaseListItem) => (
+const BasicItemRender = ({ label }: BaseListItem) => (
   <Box height={48} paddingStart="l" justifyContent="center">
-    <Text>{title}</Text>
+    <Text>{label}</Text>
   </Box>
 );
 
@@ -30,11 +32,12 @@ const TextInputWithSuggestion = React.forwardRef(
   <T extends BaseListItem>(
     {
       items,
-      renderItem = item => <BasicItemRender title={item.title} />,
-      filter = (item, searchText) => item.title.toLowerCase().startsWith(searchText.toLowerCase()),
+      renderItem = item => <BasicItemRender label={item.label} />,
+      filter = (item, searchText) => item.label.toLowerCase().startsWith(searchText.toLowerCase()),
       suggestionBoxStyle,
       onItemSelect,
       onBlur,
+      scrollViewProps,
       ...rest
     }: Props<T>,
     ref: React.ForwardedRef<TextInputHandles>,
@@ -66,9 +69,9 @@ const TextInputWithSuggestion = React.forwardRef(
     const handleItemSelection = (item: T) => {
       if (!isControlled) {
         // Keep track of value in local state when input is not controlled
-        setUncontrolledValue(item.title);
+        setUncontrolledValue(item.label);
       }
-      rest.onChangeText?.(item.title);
+      rest.onChangeText?.(item.label);
       onItemSelect?.(item);
       setVisible(false);
     };
@@ -94,12 +97,19 @@ const TextInputWithSuggestion = React.forwardRef(
               position="absolute"
               elevation={8}
               zIndex={1000}
+              maxHeight={200}
               style={suggestionBoxStyle}>
-              {filterList.map((item, index) => (
-                <Touchable onPress={() => handleItemSelection(item)} key={`render=${index}`}>
-                  {renderItem(item, index)}
-                </Touchable>
-              ))}
+              <ScrollView
+                nestedScrollEnabled
+                persistentScrollbar
+                keyboardShouldPersistTaps="handled"
+                {...scrollViewProps}>
+                {filterList.map((item, index) => (
+                  <Touchable onPress={() => handleItemSelection(item)} key={`render=${index}`}>
+                    {renderItem(item, index)}
+                  </Touchable>
+                ))}
+              </ScrollView>
             </Surface>
           </View>
         )}

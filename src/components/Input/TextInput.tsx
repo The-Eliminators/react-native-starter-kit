@@ -166,7 +166,7 @@ const TextInput = React.forwardRef<TextInputHandles, TInput>(
               },
               onChangeText: handleChangeText,
               selectionColor: colors.primary,
-              placeholderTextColor: colors.onSurfaceMediumEmphasis,
+              placeholderTextColor: colors.onSurfaceLowEmphasis,
               style: [
                 typography.subtitle,
                 {
@@ -196,7 +196,7 @@ const TextInput = React.forwardRef<TextInputHandles, TInput>(
         </Box>
         {assistiveText && (
           <Text variant="caption" color={assistiveTextColor} marginStart="l" marginTop="xxs">
-            {error ? errorMessage + '' : assistiveText}
+            {error ? errorMessage || assistiveText : assistiveText}
           </Text>
         )}
       </>

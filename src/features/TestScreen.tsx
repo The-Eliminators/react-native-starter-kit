@@ -4,28 +4,31 @@ import React, { useCallback, useRef, useState } from 'react';
 import { useBoolean } from 'src/hooks';
 import { TextInputHandles } from 'src/components/Input/types';
 import { Avatar, Box, HeaderScreen, Text, TextInput, TextInputWithSuggestion, IconButton } from 'src/components';
+import DropDown from 'src/components/Input/DropDown';
 
 const SocialMedia = [
-  { id: 1, title: 'Apple' },
-  { id: 2, title: 'Facebook' },
-  { id: 3, title: 'Amazon' },
-  { id: 4, title: 'Google' },
-  { id: 5, title: 'Microsoft' },
-  { id: 6, title: 'NetFlix' },
-  { id: 7, title: 'HotStar' },
-  { id: 8, title: 'Spotify' },
-  { id: 9, title: 'Twitter' },
-  { id: 10, title: 'Snapchat' },
-  { id: 11, title: 'WhatsApp' },
-  { id: 12, title: 'Jira' },
-  { id: 13, title: 'Figma' },
-  { id: 14, title: 'Github' },
-  { id: 15, title: 'LinkedIn' },
-  { id: 16, title: 'Instagram' },
-  { id: 17, title: 'Gmail' },
-  { id: 18, title: 'Skype' },
-  { id: 19, title: 'Teams' },
-  { id: 20, title: 'Slack' },
+  { id: 1, label: 'Apple' },
+  { id: 2, label: 'Facebook' },
+  { id: 3, label: 'Amazon' },
+  { id: 4, label: 'Google' },
+  { id: 5, label: 'Microsoft' },
+  { id: 6, label: 'NetFlix' },
+  { id: 7, label: 'HotStar' },
+  { id: 8, label: 'Spotify' },
+  { id: 9, label: 'Twitter' },
+  { id: 10, label: 'Snapchat' },
+  { id: 11, label: 'WhatsApp' },
+  { id: 12, label: 'Jira' },
+  { id: 13, label: 'Figma' },
+  { id: 14, label: 'Github' },
+  { id: 15, label: 'LinkedIn' },
+  { id: 16, label: 'Instagram' },
+  { id: 17, label: 'Gmail' },
+  { id: 18, label: 'Skype' },
+  { id: 19, label: 'Teams' },
+  { id: 20, label: 'Slack' },
+  { id: 21, label: 'Shopify' },
+  { id: 22, label: 'Scorpion' },
 ];
 
 const AddPasswordForm = () => {
@@ -56,7 +59,12 @@ const AddPasswordForm = () => {
       <Text paddingTop="xxl" paddingBottom="m">
         Credential Details:
       </Text>
-      <TextInput label="Email or Username" ref={userNameTextInputRef} />
+      <TextInput
+        label="Email or Username"
+        ref={userNameTextInputRef}
+        keyboardType="email-address"
+        autoCapitalize="none"
+      />
       <Box paddingTop="l" />
       <TextInput
         label="Password"
@@ -74,11 +82,24 @@ const AddPasswordForm = () => {
         )}
       />
       <Box paddingTop="l" />
-      <TextInput label="Website or AppName" />
+      <TextInput label="Website or AppName" keyboardType="email-address" />
       <Text paddingTop="xxl" paddingBottom="m">
         Other Details:
       </Text>
-      <TextInput label="Category" />
+      <DropDown
+        label="Category"
+        placeholder="Choose any category"
+        items={[
+          { label: 'Personal', id: 1 },
+          { label: 'Work', id: 2 },
+          { label: 'Family', id: 3 },
+          { label: 'Wife', id: 4 },
+          { label: 'Friend', id: 5 },
+        ]}
+        onItemSelect={item => console.log('Item Selected', item)}
+        assistiveText="Choose any category"
+        errorMessage="Please choose category"
+      />
       <Box paddingTop="l" />
       <TextInput label="Note" multiline />
       <Box padding="s" />
@@ -93,7 +114,7 @@ const TestScreen = () => {
       padding="m"
       menuActions={[{ icon: 'tick', onPress: () => Alert.alert('Saved') }]}
       scrollEnabled
-      scrollViewProps={{ keyboardShouldPersistTaps: 'handled' }}>
+      scrollViewProps={{ keyboardShouldPersistTaps: 'handled', nestedScrollEnabled: true }}>
       <AddPasswordForm />
     </HeaderScreen>
   );
