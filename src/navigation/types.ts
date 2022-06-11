@@ -3,4 +3,5 @@ export type RootStackParamList = {
   ComponentScreen: undefined;
   SettingScreen: undefined;
   TestScreen: undefined;
+  InputFormScreen: undefined;
 };
