@@ -2,7 +2,7 @@ import { createTheme } from '@shopify/restyle';
 
 import spacing from './spacing';
 import typography from './typography';
-import { Theme } from 'src/types/theme.type';
+import { Theme } from 'src/theme/theme.type';
 import { darkThemeColor, lightThemeColor } from './colors';
 
 const lightTheme = createTheme<Theme>({

@@ -1,7 +1,7 @@
 import { createBox, useTheme } from '@shopify/restyle';
 import * as React from 'react';
 import { Animated, StyleSheet, View, StyleProp, ViewStyle } from 'react-native';
-import { Theme } from 'src/types/theme.type';
+import { Theme } from 'src/theme/theme.type';
 import overlay from 'src/utils/overlay';
 import shadow from 'src/utils/shadow';
 

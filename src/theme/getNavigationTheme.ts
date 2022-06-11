@@ -1,5 +1,5 @@
 import { DarkTheme, DefaultTheme } from '@react-navigation/native';
-import { Theme } from 'src/types/theme.type';
+import { Theme } from 'src/theme/theme.type';
 import overlay from 'src/utils/overlay';
 
 const getNavigationTheme = ({ mode, colors }: Theme) => {

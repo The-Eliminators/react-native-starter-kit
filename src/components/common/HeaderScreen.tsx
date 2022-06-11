@@ -6,7 +6,7 @@ import ScrollView from './ScrollView';
 import { Box, Header } from 'src/components';
 import HeaderContent from '../Header/HeaderContent';
 import { THeaderAction } from '../Header/HeaderAction';
-import type { ThemeColors } from 'src/types/theme.type';
+import type { ThemeColors } from 'src/theme/theme.type';
 
 type THeaderScreen = {
   title: string;

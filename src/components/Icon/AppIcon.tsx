@@ -3,8 +3,8 @@ import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 
 // User Defined
 import { useTheme } from 'src/hooks';
-import { IconName } from 'src/types/iconName.type';
-import { ThemeColors } from 'src/types/theme.type';
+import { IconName } from 'src/components/Icon/iconName.type';
+import { ThemeColors } from 'src/theme/theme.type';
 import icoMoonConfig from 'src/assets/fonts/iconConfig.json';
 import { StyleProp, TextStyle } from 'react-native';
 

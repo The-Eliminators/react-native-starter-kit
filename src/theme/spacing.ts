@@ -1,4 +1,4 @@
-import { ThemeSpacing } from 'src/types/theme.type';
+import { ThemeSpacing } from 'src/theme/theme.type';
 
 const spacing: ThemeSpacing = {
   none: 0,

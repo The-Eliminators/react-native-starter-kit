@@ -3,8 +3,8 @@ import type { ComponentPropsWithoutRef } from 'react';
 
 import AppIcon from '../Icon/AppIcon';
 import Touchable from '../Button/Touchable';
-import { ThemeColors } from 'src/types/theme.type';
-import { IconName } from 'src/types/iconname.type';
+import { ThemeColors } from 'src/theme/theme.type';
+import { IconName } from 'src/components/Icon/iconName.type';
 
 export type THeaderAction = ComponentPropsWithoutRef<typeof Touchable> & {
   icon: IconName;

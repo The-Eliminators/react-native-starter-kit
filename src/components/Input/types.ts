@@ -9,7 +9,7 @@ import {
   ScrollViewProps,
 } from 'react-native';
 
-import { ThemeColors } from 'src/types/theme.type';
+import { ThemeColors } from 'src/theme/theme.type';
 
 type RenderProps = {
   ref: (a?: NativeTextInput | null) => void;

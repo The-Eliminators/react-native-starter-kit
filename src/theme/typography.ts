@@ -1,4 +1,4 @@
-import { Typography } from 'src/types/theme.type';
+import { Typography } from 'src/theme/theme.type';
 import getFontFamily from './fontWeights';
 
 const typography: Typography = {

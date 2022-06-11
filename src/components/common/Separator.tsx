@@ -10,7 +10,7 @@ import {
 } from '@shopify/restyle';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Theme } from 'src/types/theme.type';
+import { Theme } from 'src/theme/theme.type';
 
 interface Props extends ColorProps<Theme>, OpacityProps<Theme>, SpacingProps<Theme> {
   width?: number;
