@@ -4,9 +4,10 @@ import { TextInput as NativeTextInput, Animated } from 'react-native';
 import Box from '../common/Box';
 import Text from '../common/Text';
 import typography from 'src/theme/typography';
+import { getTextInputState } from './helper';
 import { useTheme, useBoolean } from 'src/hooks';
 import useLabelAnimationValue from './useLabelAnimationValue';
-import type { TextInputState, TextInputHandles, TInput, TStateColors } from './types';
+import type { InputHandles, TInput, TStateColors } from './types';
 
 export const TextInputStateOnColors: TStateColors = {
   normal: {
@@ -35,11 +36,7 @@ export const TextInputStateOnColors: TStateColors = {
   },
 };
 
-function getTextInputState(disabled: boolean, error: boolean, isFocused: boolean, hasValue: boolean): TextInputState {
-  return disabled ? 'disabled' : error ? 'error' : isFocused ? 'focused' : hasValue ? 'hasValue' : 'normal';
-}
-
-const TextInput = React.forwardRef<TextInputHandles, TInput>(
+const TextInput = React.forwardRef<InputHandles, TInput>(
   (
     {
       render = props => <NativeTextInput {...props} />,
@@ -102,10 +99,8 @@ const TextInput = React.forwardRef<TextInputHandles, TInput>(
     React.useImperativeHandle(ref, () => ({
       focus: () => root.current?.focus(),
       clear: () => root.current?.clear(),
-      setNativeProps: (args: Object) => root.current?.setNativeProps(args),
       isFocused: () => root.current?.isFocused() || false,
       blur: () => root.current?.blur(),
-      forceFocus: () => root.current?.focus(),
     }));
 
     const handleChangeText = (currentValue: string) => {

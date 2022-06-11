@@ -2,7 +2,7 @@ import { Alert } from 'react-native';
 import React, { useCallback, useRef, useState } from 'react';
 
 import { useBoolean } from 'src/hooks';
-import { TextInputHandles } from 'src/components/Input/types';
+import { InputHandles } from 'src/components/Input/types';
 import { Avatar, Box, HeaderScreen, Text, TextInput, TextInputWithSuggestion, IconButton } from 'src/components';
 import DropDown from 'src/components/Input/DropDown';
 
@@ -33,7 +33,8 @@ const SocialMedia = [
 
 const AddPasswordForm = () => {
   const { value: passwordVisible, toggle: togglePasswordVisibility } = useBoolean(false);
-  const userNameTextInputRef = useRef<TextInputHandles>(null);
+  const userNameTextInputRef = useRef<InputHandles>(null);
+  const dropDownTextInputRef = useRef<InputHandles>(null);
   const [title, setTitle] = useState('');
 
   const onChangeTitle = useCallback((value: string) => {
@@ -51,9 +52,9 @@ const AddPasswordForm = () => {
         onChangeText={onChangeTitle}
         autoFocus
         returnKeyType="next"
-        onSubmitEditing={() => userNameTextInputRef.current?.focus()}
+        onSubmitEditing={() => dropDownTextInputRef.current?.focus()}
         blurOnSubmit={false}
-        onItemSelect={() => userNameTextInputRef.current?.focus()}
+        onItemSelect={() => dropDownTextInputRef.current?.focus()}
       />
 
       <Text paddingTop="xxl" paddingBottom="m">
@@ -87,6 +88,7 @@ const AddPasswordForm = () => {
         Other Details:
       </Text>
       <DropDown
+        ref={dropDownTextInputRef}
         label="Category"
         placeholder="Choose any category"
         items={[

@@ -1,19 +1,14 @@
 import React, { ReactNode, useCallback, useState } from 'react';
+import { ScrollViewProps, StyleProp, View, ViewStyle } from 'react-native';
 
-import Box from '../common/Box';
-import Text from '../common/Text';
 import TextInput from './TextInput';
 import Surface from '../common/Surface';
+import DropDownItem from './DropDownItem';
 import Touchable from '../Button/Touchable';
-import { TextInputHandles, TInput } from './types';
-import { ScrollViewProps, StyleProp, View, ViewStyle } from 'react-native';
 import ScrollView from '../common/ScrollView';
+import { InputHandles, TInput } from './types';
 
-type BaseListItem = {
-  label: string;
-};
-
-type Props<T extends BaseListItem> = {
+type Props<T> = {
   items: Array<T>;
   onItemSelect?: (item: T) => void;
   renderItem?: (item: T, index: number) => ReactNode;
@@ -22,17 +17,11 @@ type Props<T extends BaseListItem> = {
   scrollViewProps?: ScrollViewProps;
 } & TInput;
 
-const BasicItemRender = ({ label }: BaseListItem) => (
-  <Box height={48} paddingStart="l" justifyContent="center">
-    <Text>{label}</Text>
-  </Box>
-);
-
 const TextInputWithSuggestion = React.forwardRef(
-  <T extends BaseListItem>(
+  <T extends { label: string }>(
     {
       items,
-      renderItem = item => <BasicItemRender label={item.label} />,
+      renderItem = item => <DropDownItem label={item.label} />,
       filter = (item, searchText) => item.label.toLowerCase().startsWith(searchText.toLowerCase()),
       suggestionBoxStyle,
       onItemSelect,
@@ -40,7 +29,7 @@ const TextInputWithSuggestion = React.forwardRef(
       scrollViewProps,
       ...rest
     }: Props<T>,
-    ref: React.ForwardedRef<TextInputHandles>,
+    ref: React.ForwardedRef<InputHandles>,
   ) => {
     const isControlled = rest.value !== undefined;
     const validInputValue = isControlled ? rest.value : rest.defaultValue;

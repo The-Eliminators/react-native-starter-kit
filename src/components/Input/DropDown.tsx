@@ -1,16 +1,18 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { TextInput as NativeTextInput, Animated, StyleProp, TextStyle, ViewStyle, ScrollViewProps } from 'react-native';
+import { TextInput as NativeTextInput, Animated } from 'react-native';
 
 import Box from '../common/Box';
 import Text from '../common/Text';
 import AppIcon from '../Icon/AppIcon';
 import Surface from '../common/Surface';
+import DropDownItem from './DropDownItem';
 import Touchable from '../Button/Touchable';
+import { getTextInputState } from './helper';
 import typography from 'src/theme/typography';
 import ScrollView from '../common/ScrollView';
 import { useTheme, useBoolean } from 'src/hooks';
 import useLabelAnimationValue from './useLabelAnimationValue';
-import type { TextInputState, TextInputHandles, TStateColors, SideRenderProps, InputStateOnColors } from './types';
+import type { InputHandles, TStateColors, DropDownProps } from './types';
 
 export const TextInputStateOnColors: TStateColors = {
   normal: {
@@ -39,92 +41,7 @@ export const TextInputStateOnColors: TStateColors = {
   },
 };
 
-type BaseListItem = {
-  label: string;
-  id: number;
-};
-
-const BasicItemRender = ({ label, selected }: { label: string; selected: boolean }) => (
-  <Box height={42} paddingStart="l" paddingEnd="xxl" alignItems="center" flexDirection={'row'}>
-    <Box flex={1}>
-      <Text color={selected ? 'onSurfaceHighEmphasis' : undefined}>{label}</Text>
-    </Box>
-    {selected && <AppIcon name="tick" size={16} />}
-  </Box>
-);
-
-type RenderProps<T> = {
-  value?: T;
-  placeholder?: string;
-  placeholderTextColor?: string;
-  style?: StyleProp<ViewStyle> | StyleProp<TextStyle>;
-  state?: TextInputState;
-};
-
-export type DropDownProps<T> = {
-  /** Item list */
-  items: Array<T>;
-
-  /** Value of the text input. */
-  value?: T;
-  defaultValue?: T;
-
-  /** The text to use for the floating label. */
-  label?: string;
-
-  /** If true, user won't be able to interact with the component. */
-  disabled?: boolean;
-
-  /** Placeholder for the input. */
-  placeholder?: string;
-
-  assistiveText?: string;
-
-  /**  Whether to style the TextInput with error style. */
-  error?: boolean;
-
-  errorMessage?: string;
-
-  /** Render dropdown selected value  */
-  render?: (props: RenderProps<T>) => React.ReactNode;
-
-  /** Render Drop down item */
-  renderItem?: (item: T, selected: boolean, index: number) => React.ReactNode;
-
-  /** Callback that is called when user select the item */
-  onItemSelect?: (item: T | undefined) => void;
-
-  /** To display clean button which is useful when field is not required  */
-  showClearButton?: boolean;
-
-  /** Callback that is called when the text input is focused. */
-  onFocus?: (args: any) => void;
-
-  /** Callback that is called when the text input is blurred. */
-  onBlur?: (args: any) => void;
-
-  /** Style object */
-  labelStyle?: StyleProp<TextStyle>;
-  containerStyle?: StyleProp<ViewStyle>;
-  innerContainerStyle?: StyleProp<ViewStyle>;
-  dropDownContainerStyle?: StyleProp<ViewStyle>;
-
-  scrollViewProps?: ScrollViewProps;
-
-  /** onColors */
-  inputStateOnColors?: InputStateOnColors;
-
-  style?: StyleProp<ViewStyle>;
-
-  leftRender?: (props: SideRenderProps) => React.ReactNode;
-  rightRender?: (props: SideRenderProps) => React.ReactNode;
-};
-
-function getTextInputState(disabled: boolean, error: boolean, isFocused: boolean, hasValue: boolean): TextInputState {
-  return disabled ? 'disabled' : error ? 'error' : isFocused ? 'focused' : hasValue ? 'hasValue' : 'normal';
-}
-
-function DropDown<T extends BaseListItem>(
+function DropDown<T extends { id: number; label: string }>(
   {
     render = ({ value, ...props }) => <NativeTextInput value={value?.label} editable={false} {...props} />,
     disabled = false,
@@ -147,26 +64,26 @@ function DropDown<T extends BaseListItem>(
     innerContainerStyle,
     inputStateOnColors,
     items,
-    renderItem = (item, selected) => <BasicItemRender label={item.label} selected={selected} />,
+    renderItem = (item, selected) => (
+      <DropDownItem label={item.label} selected={selected} color={selected ? 'onSurfaceHighEmphasis' : undefined} />
+    ),
     onItemSelect,
     dropDownContainerStyle,
     scrollViewProps,
     showClearButton = true,
     ...rest
   }: DropDownProps<T>,
-  ref: React.ForwardedRef<TextInputHandles>,
+  ref: React.ForwardedRef<InputHandles>,
 ) {
   const { colors } = useTheme();
   const isControlled = rest.value !== undefined;
   const validInputValue = isControlled ? rest.value : defaultValue;
 
-  const root = React.useRef<NativeTextInput | undefined | null>();
-
   const [uncontrolledValue, setUncontrolledValue] = useState<T | undefined>(validInputValue);
   // Use value from props instead of local state when input is controlled
   const value = isControlled ? rest.value : uncontrolledValue;
   const hasValue = !!value; // To avoid multiple runs of useEffect whenever value update
-  const { value: isFocused, setFalse: blur, toggle: toggleFocus } = useBoolean(false);
+  const { value: isFocused, setFalse: blur, setTrue: focus, toggle: toggleFocus } = useBoolean(false);
 
   const state = getTextInputState(disabled, error, isFocused, hasValue);
   const { labelColor, underlineColor, assistiveTextColor, inputTextColor } = {
@@ -190,12 +107,13 @@ function DropDown<T extends BaseListItem>(
   }, [hasValue, activate, label, deactivate, isFocused, placeholder]);
 
   React.useImperativeHandle(ref, () => ({
-    focus: () => root.current?.focus(),
-    clear: () => root.current?.clear(),
-    setNativeProps: (args: Object) => root.current?.setNativeProps(args),
-    isFocused: () => root.current?.isFocused() || false,
-    blur: () => root.current?.blur(),
-    forceFocus: () => root.current?.focus(),
+    focus: () => {
+      focus();
+      onFocus?.(null);
+    },
+    clear: () => handleItemSelection(undefined),
+    isFocused: () => isFocused,
+    blur: () => blur(),
   }));
 
   const handleItemSelection = (item?: T) => {

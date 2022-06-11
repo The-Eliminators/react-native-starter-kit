@@ -6,11 +6,12 @@ import {
   StyleProp,
   TextStyle,
   ViewStyle,
+  ScrollViewProps,
 } from 'react-native';
 
 import { ThemeColors } from 'src/types/theme.type';
 
-export type RenderProps = {
+type RenderProps = {
   ref: (a?: NativeTextInput | null) => void;
   onChangeText?: (a: string) => void;
   placeholder?: string;
@@ -83,14 +84,14 @@ export type TInput = {
 
 export type TextInputState = 'error' | 'disabled' | 'focused' | 'hasValue' | 'normal';
 
-export type TextInputStateProperty = 'labelColor' | 'inputTextColor' | 'underlineColor' | 'assistiveTextColor';
+type TextInputStateProperty = 'labelColor' | 'inputTextColor' | 'underlineColor' | 'assistiveTextColor';
 
-export type SideRenderProps = {
+type SideRenderProps = {
   color: keyof ThemeColors;
   state: TextInputState;
 };
 
-export type TextInputHandles = Pick<NativeTextInput, 'focus' | 'clear' | 'blur' | 'isFocused' | 'setNativeProps'>;
+export type InputHandles = Pick<NativeTextInput, 'focus' | 'clear' | 'blur' | 'isFocused'>;
 
 export type InputStateOnColors = {
   [state in TextInputState]?: { [property in TextInputStateProperty]?: keyof ThemeColors };
@@ -98,4 +99,71 @@ export type InputStateOnColors = {
 
 export type TStateColors = InputStateOnColors & {
   normal: { [property in TextInputStateProperty]: keyof ThemeColors };
+};
+
+type DropDownRenderProps<T> = {
+  value?: T;
+  placeholder?: string;
+  placeholderTextColor?: string;
+  style?: StyleProp<ViewStyle> | StyleProp<TextStyle>;
+  state?: TextInputState;
+};
+
+export type DropDownProps<T> = {
+  /** Item list */
+  items: Array<T>;
+
+  /** Value of the text input. */
+  value?: T;
+  defaultValue?: T;
+
+  /** The text to use for the floating label. */
+  label?: string;
+
+  /** If true, user won't be able to interact with the component. */
+  disabled?: boolean;
+
+  /** Placeholder for the input. */
+  placeholder?: string;
+
+  assistiveText?: string;
+
+  /**  Whether to style the TextInput with error style. */
+  error?: boolean;
+
+  errorMessage?: string;
+
+  /** Render dropdown selected value  */
+  render?: (props: DropDownRenderProps<T>) => React.ReactNode;
+
+  /** Render Drop down item */
+  renderItem?: (item: T, selected: boolean, index: number) => React.ReactNode;
+
+  /** Callback that is called when user select the item */
+  onItemSelect?: (item: T | undefined) => void;
+
+  /** To display clean button which is useful when field is not required  */
+  showClearButton?: boolean;
+
+  /** Callback that is called when the text input is focused. */
+  onFocus?: (args: any) => void;
+
+  /** Callback that is called when the text input is blurred. */
+  onBlur?: (args: any) => void;
+
+  /** Style object */
+  labelStyle?: StyleProp<TextStyle>;
+  containerStyle?: StyleProp<ViewStyle>;
+  innerContainerStyle?: StyleProp<ViewStyle>;
+  dropDownContainerStyle?: StyleProp<ViewStyle>;
+
+  scrollViewProps?: ScrollViewProps;
+
+  /** onColors */
+  inputStateOnColors?: InputStateOnColors;
+
+  style?: StyleProp<ViewStyle>;
+
+  leftRender?: (props: SideRenderProps) => React.ReactNode;
+  rightRender?: (props: SideRenderProps) => React.ReactNode;
 };
