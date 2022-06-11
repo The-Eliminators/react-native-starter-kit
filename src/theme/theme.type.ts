@@ -104,3 +104,5 @@ export interface Theme extends BaseTheme {
   breakpoints: Breakpoints;
   spacing: ThemeSpacing;
 }
+
+export type ThemeColorKey = keyof ThemeColors;

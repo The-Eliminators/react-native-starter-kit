@@ -1,5 +1,5 @@
 import { Platform } from 'react-native';
-import { Fonts } from 'src/types/theme.type';
+import { Fonts } from 'src/theme/theme.type';
 
 const robotoWeights: Fonts = {
   regular: {

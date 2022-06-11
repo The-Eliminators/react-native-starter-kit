@@ -1,7 +1,7 @@
 import React from 'react';
 import { createText } from '@shopify/restyle';
 import getFontFamily from 'src/theme/fontWeights';
-import { Fonts, Theme } from 'src/types/theme.type';
+import { Fonts, Theme } from 'src/theme/theme.type';
 import { useTranslation } from 'react-i18next';
 import English from 'src/i18n/languages/English';
 

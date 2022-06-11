@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { ThemeColors } from 'src/types/theme.type';
+import { ThemeColors } from 'src/theme/theme.type';
 import utils from 'src/utils/utils';
 import Box, { TBox } from '../common/Box';
 import Text from '../common/Text';

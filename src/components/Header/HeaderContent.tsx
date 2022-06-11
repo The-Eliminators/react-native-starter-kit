@@ -2,7 +2,7 @@ import React from 'react';
 import { BoxProps } from '@shopify/restyle';
 
 import { Box, Text } from 'src/components';
-import { Theme, ThemeColors } from 'src/types/theme.type';
+import { Theme, ThemeColors } from 'src/theme/theme.type';
 
 interface Props extends BoxProps<Theme> {
   title: string;

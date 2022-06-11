@@ -3,7 +3,7 @@ import React from 'react';
 import Text from '../common/Text';
 import AppIcon from '../Icon/AppIcon';
 import Box, { TBox } from '../common/Box';
-import { ThemeColors } from 'src/types/theme.type';
+import { ThemeColors } from 'src/theme/theme.type';
 
 type DropDownItemProps = {
   label: string;

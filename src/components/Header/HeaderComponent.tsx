@@ -4,7 +4,7 @@ import { useTheme } from '@shopify/restyle';
 
 import Surface from '../common/Surface';
 import overlay from 'src/utils/overlay';
-import type { Theme, ThemeColors } from 'src/types/theme.type';
+import type { Theme, ThemeColors } from 'src/theme/theme.type';
 
 interface Props {
   color?: keyof ThemeColors;
