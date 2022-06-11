@@ -7,6 +7,7 @@ import HomeScreen from 'src/features/HomeScreen';
 import TestScreen from 'src/features/TestScreen';
 import SettingScreen from 'src/features/SettingScreen';
 import ComponentScreen from 'src/features/ComponentScreen';
+import InputFormScreen from 'src/features/Example/InputFormScreen';
 
 const Stack = createStackNavigator<RootStackParamList>();
 const horizontalAnimation: StackNavigationOptions = {
@@ -36,6 +37,7 @@ const RootNavigator = () => {
       <Stack.Screen name="ComponentScreen" component={ComponentScreen} />
       <Stack.Screen name="SettingScreen" component={SettingScreen} />
       <Stack.Screen name="TestScreen" component={TestScreen} />
+      <Stack.Screen name="InputFormScreen" component={InputFormScreen} />
     </Stack.Navigator>
   );
 };

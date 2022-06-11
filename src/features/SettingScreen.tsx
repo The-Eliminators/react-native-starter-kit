@@ -9,6 +9,7 @@ const SettingScreen: FC<StackScreenProps<RootStackParamList, 'SettingScreen'>> =
     <HeaderScreen title="Settings Screen" justifyContent="center" alignItems="center" paddingHorizontal="l">
       <Label name="settingScreen" />
       <Button label="Component Screen" onPress={() => navigation.navigate('ComponentScreen')} />
+      <Button label="Input Form Screen" onPress={() => navigation.navigate('InputFormScreen')} />
     </HeaderScreen>
   );
 };
