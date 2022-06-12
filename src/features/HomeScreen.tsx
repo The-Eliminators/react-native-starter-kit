@@ -1,10 +1,9 @@
 import React, { FC } from 'react';
-import { StackScreenProps } from '@react-navigation/stack';
 
 import { Button, HeaderScreen, Label } from 'src/components';
-import { RootStackParamList } from 'src/navigation/types';
+import { RootStackScreenProps } from 'src/navigation/types';
 
-const HomeScreen: FC<StackScreenProps<RootStackParamList, 'HomeScreen'>> = ({ navigation }) => {
+const HomeScreen: FC<RootStackScreenProps<'HomeScreen'>> = ({ navigation }) => {
   return (
     <HeaderScreen
       title="Home Screen"

@@ -1,10 +1,9 @@
 import React, { FC } from 'react';
-import { StackScreenProps } from '@react-navigation/stack';
 
 import { Button, Label, HeaderScreen } from 'src/components';
-import { RootStackParamList } from 'src/navigation/types';
+import { RootStackScreenProps } from 'src/navigation/types';
 
-const SettingScreen: FC<StackScreenProps<RootStackParamList, 'SettingScreen'>> = ({ navigation }) => {
+const SettingScreen: FC<RootStackScreenProps<'SettingScreen'>> = ({ navigation }) => {
   return (
     <HeaderScreen title="Settings Screen" justifyContent="center" alignItems="center" paddingHorizontal="l">
       <Label name="settingScreen" />
