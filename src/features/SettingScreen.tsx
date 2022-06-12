@@ -1,14 +1,13 @@
 import React, { FC } from 'react';
-import { StackScreenProps } from '@react-navigation/stack';
 
 import { Button, Label, HeaderScreen } from 'src/components';
-import { RootStackParamList } from 'src/navigation/types';
+import { RootStackScreenProps } from 'src/navigation/types';
 
 import log from 'src/utils/logger';
 import config from 'src/constant/config';
 import MailSender from 'src/utils/mailSender';
 
-const SettingScreen: FC<StackScreenProps<RootStackParamList, 'SettingScreen'>> = ({ navigation }) => {
+const SettingScreen: FC<RootStackScreenProps<'SettingScreen'>> = ({ navigation }) => {
   log.info('Hello World');
   return (
     <HeaderScreen title="Settings Screen" justifyContent="center" alignItems="center" paddingHorizontal="l">

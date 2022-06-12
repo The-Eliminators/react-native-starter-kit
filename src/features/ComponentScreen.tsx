@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { Alert } from 'react-native';
-import { StackScreenProps } from '@react-navigation/stack';
 
 import { useTranslation } from 'react-i18next';
-import { RootStackParamList } from 'src/navigation/types';
+import { RootStackScreenProps } from 'src/navigation/types';
 import { useSnackbar, useActionSheet, useBottomSheet, useTheme } from 'src/hooks';
 import {
   Touchable,
@@ -22,7 +21,7 @@ import {
 } from 'src/components';
 import AssetsImage from 'src/constant/AssetsImage';
 
-export default function ComponentScreen({}: StackScreenProps<RootStackParamList, 'ComponentScreen'>) {
+export default function ComponentScreen({}: RootStackScreenProps<'ComponentScreen'>) {
   const { mode } = useTheme();
   const { t, i18n } = useTranslation();
   const showSnackbar = useSnackbar();

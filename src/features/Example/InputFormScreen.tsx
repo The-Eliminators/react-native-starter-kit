@@ -15,8 +15,7 @@ import {
   Button,
 } from 'src/components';
 import DropDown from 'src/components/Input/DropDown';
-import { StackScreenProps } from '@react-navigation/stack';
-import { RootStackParamList } from 'src/navigation/types';
+import { RootStackScreenProps } from 'src/navigation/types';
 
 const SocialMedia = [
   { id: 1, label: 'Apple' },
@@ -58,7 +57,7 @@ const useTextInput = ({ value: defaultValue }: { value?: string } = {}) => {
   };
 };
 
-const InputFormScreen: FC<StackScreenProps<RootStackParamList, 'InputFormScreen'>> = ({ navigation }) => {
+const InputFormScreen: FC<RootStackScreenProps<'InputFormScreen'>> = ({ navigation }) => {
   const { value: passwordVisible, toggle: togglePasswordVisibility } = useBoolean(false);
   const { value: title, setValue: onChangeTitle } = useTextInput();
   const { value: account, setValue: setAccount, ref: accountRef } = useTextInput();
