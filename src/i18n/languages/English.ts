@@ -8,4 +8,6 @@ export default {
   helloWorld: 'Hello World!!!',
   labelComponent: 'Label Components',
   tFunctionEg: 't() Example',
+  sendLogs: 'Send Logs',
+  sendLogsMessage: 'Click here to send logs to developers',
 } as const;
