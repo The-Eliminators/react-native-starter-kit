@@ -11,6 +11,7 @@ import 'src/i18n';
 import theme from 'src/theme';
 import Navigation from 'src/navigation';
 import { SnackbarProvider } from 'src/context';
+import ErrorBoundary from 'src/utils/errorBoundary';
 
 const App = () => {
   const themeMode = useColorScheme();
@@ -24,12 +25,14 @@ const App = () => {
   };
 
   return (
-    <ThemeProvider theme={themeMode === 'light' ? theme.lightTheme : theme.darkTheme}>
-      <StatusBar translucent={true} barStyle="default" backgroundColor="transparent" />
-      <SnackbarProvider>
-        <Navigation onReady={onNavigationReady} />
-      </SnackbarProvider>
-    </ThemeProvider>
+    <ErrorBoundary>
+      <ThemeProvider theme={themeMode === 'light' ? theme.lightTheme : theme.darkTheme}>
+        <StatusBar translucent={true} barStyle="default" backgroundColor="transparent" />
+        <SnackbarProvider>
+          <Navigation onReady={onNavigationReady} />
+        </SnackbarProvider>
+      </ThemeProvider>
+    </ErrorBoundary>
   );
 };
 
