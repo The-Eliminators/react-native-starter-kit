@@ -10,4 +10,10 @@ export default {
   tFunctionEg: 't() Example',
   sendLogs: 'Send Logs',
   sendLogsMessage: 'Click here to send logs to developers',
+  logMailSubject: 'Stater kit Logs',
+  logMailBody: '<h1>Hii i am your logger assistant</h1><h3>Here are todays logs</h3>',
+  crashPopupTitle: 'Error',
+  crashPopupMessage: 'Something went wrong. Please report this issue to support team.',
+  cancel: 'Cancel',
+  report: 'Report',
 } as const;

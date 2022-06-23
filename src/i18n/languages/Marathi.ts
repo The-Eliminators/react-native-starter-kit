@@ -7,4 +7,10 @@ export default {
   helloWorld: 'हॅलो वर्ल्ड !!!',
   labelComponent: 'लेबल घटक',
   tFunctionEg: 't() उदाहरण',
+  logMailSubject: 'स्टार्टर किट लॉग',
+  logMailBody: '<h1>हाय मी तुमचा लॉगर असिस्टंट आहे</h1><h3>हे आजचे लॉग आहेत</h3>',
+  crashPopupTitle: 'त्रुटी',
+  crashPopupMessage: 'काहीतरी चूक झाली. कृपया समर्थन कार्यसंघाकडे या समस्येचा अहवाल द्या.',
+  cancel: 'रद्द करा',
+  report: 'अहवाल द्या',
 } as const;
