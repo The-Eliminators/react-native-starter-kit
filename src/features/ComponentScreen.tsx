@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { Alert } from 'react-native';
 
-import { useTranslation } from 'react-i18next';
+import AssetsImage from 'src/constant/AssetsImage';
 import { RootStackScreenProps } from 'src/navigation/types';
+import useTranslationPrefix from 'src/hooks/useTranslationPrefix';
 import { useSnackbar, useActionSheet, useBottomSheet, useTheme } from 'src/hooks';
 import {
   Touchable,
@@ -11,19 +12,15 @@ import {
   Surface,
   Separator,
   Button,
-  Label,
   BottomSheet,
   ActionSheet,
   HeaderScreen,
   Avatar,
-  TextInput,
-  AppIcon,
 } from 'src/components';
-import AssetsImage from 'src/constant/AssetsImage';
 
-export default function ComponentScreen({}: RootStackScreenProps<'ComponentScreen'>) {
+export default function ComponentScreen({ navigation }: RootStackScreenProps<'ComponentScreen'>) {
   const { mode } = useTheme();
-  const { t, i18n } = useTranslation();
+  const { t, i18n } = useTranslationPrefix('componentScreen');
   const showSnackbar = useSnackbar();
   const { bottomSheetRef, open, close } = useBottomSheet();
   const { actionSheetRef, open: openActionSheet } = useActionSheet();
@@ -31,8 +28,8 @@ export default function ComponentScreen({}: RootStackScreenProps<'ComponentScree
   return (
     <>
       <HeaderScreen
-        title="Component Screen"
-        subtitle="Listed all components"
+        title={t('screenTitle')}
+        subtitle={t('screenSubTitle')}
         headerColor="primary"
         statusContentColor={mode === 'light' ? 'light-content' : 'dark-content'}
         titleColor="onPrimaryHighEmphasis"
@@ -112,7 +109,8 @@ export default function ComponentScreen({}: RootStackScreenProps<'ComponentScree
 
         {/* Input Field */}
         <Separator width={2} marginVertical="s" />
-        <TextInputSample />
+        <Text variant="heading"> 6. Input Fields </Text>
+        <Button label="Open Form Screen" onPress={() => navigation.navigate('InputFormScreen')} />
 
         {/* Bottom Sheet Example */}
         <Separator width={2} marginVertical="s" />
@@ -177,10 +175,9 @@ export default function ComponentScreen({}: RootStackScreenProps<'ComponentScree
             <Button label="English" width="40%" onPress={() => i18n.changeLanguage('en')} />
             <Button label="Marathi" width="40%" onPress={() => i18n.changeLanguage('mr')} />
           </Box>
-          <Label variant="subtitle" name="labelComponent" />
-          <Label name="hiMessage" />
-          <Label variant="heading" name="myNameIs" />
-          <Label variant="title" name="helloWorld" />
+          <Text>{t('welcomeMessage')}</Text>
+          <Text variant="heading">{t('myName')}</Text>
+          <Text>{t('helloWorld')}</Text>
           <Text>{t('tFunctionEg')}</Text>
         </Box>
       </HeaderScreen>
@@ -211,44 +208,3 @@ export default function ComponentScreen({}: RootStackScreenProps<'ComponentScree
     </>
   );
 }
-
-const TextInputSample = () => {
-  return (
-    <>
-      <Text variant="heading"> 6. Input Fields </Text>
-      <Box paddingVertical="xxxl">
-        <TextInput
-          leftRender={({ color }) => <AppIcon name="user" size={22} color={color} />}
-          label="Name*"
-          placeholder="Full Name"
-          assistiveText="Required"
-        />
-        <Box paddingTop="l" />
-        <TextInput
-          leftRender={({ color }) => <AppIcon name="mail" size={22} color={color} />}
-          label="Email"
-          defaultValue="example@gmail.com"
-        />
-        <Box paddingTop="l" />
-        <TextInput
-          label="Password"
-          secureTextEntry={true}
-          leftRender={({ color }) => <AppIcon name="settings" size={22} color={color} />}
-          rightRender={({ color }) => <AppIcon name="hide" size={24} color={color} />}
-        />
-        {/* <Box padding="m" />
-      <TextInput label="Wrong" assistiveText="Assistive text" error errorMessage="Something went wrong" /> */}
-        {/* <Box padding="m" />
-      <TextInput
-        label="Note"
-        assistiveText="Write your notes"
-        errorMessage="Something went wrong"
-        // eslint-disable-next-line react-native/no-inline-styles
-        leftRender={({ color }) => <AppIcon name="edit" size={20} color={color} style={{ flex: 1, paddingTop: 20 }} />}
-        multiline
-        defaultValue="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
-      /> */}
-      </Box>
-    </>
-  );
-};

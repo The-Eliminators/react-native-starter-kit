@@ -1,20 +1,22 @@
 import React, { FC } from 'react';
-
-import { Button, HeaderScreen, Label } from 'src/components';
+import { Button, HeaderScreen, Text } from 'src/components';
 import { RootStackScreenProps } from 'src/navigation/types';
+import useTranslationPrefix from 'src/hooks/useTranslationPrefix';
 
 const HomeScreen: FC<RootStackScreenProps<'HomeScreen'>> = ({ navigation }) => {
+  const { t, commonT } = useTranslationPrefix('homeScreen');
+
   return (
     <HeaderScreen
-      title="Home Screen"
-      subtitle="React native toolkit"
+      title={t('title')}
+      subtitle={t('subTitle')}
       renderLeftHeader={null}
       paddingHorizontal="l"
       justifyContent="center"
       alignItems="center">
-      <Label textAlign="center" name="home" />
-      <Button label="Settings" onPress={() => navigation.navigate('SettingScreen')} />
-      <Button label="Test Screen" onPress={() => navigation.navigate('TestScreen')} />
+      <Text>{commonT('appName')}</Text>
+      <Button label={t('action.openSettings')} onPress={() => navigation.navigate('SettingScreen')} />
+      <Button label={t('action.openTestScreen')} onPress={() => navigation.navigate('TestScreen')} />
     </HeaderScreen>
   );
 };
