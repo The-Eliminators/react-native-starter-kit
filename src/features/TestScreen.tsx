@@ -5,7 +5,7 @@ import { HeaderScreen, Text } from 'src/components';
 const TestScreen = () => {
   return (
     <HeaderScreen title="Test Screen" justifyContent="center" alignItems="center">
-      <Text>Test your components here</Text>
+      <Text>Do your testing here...</Text>
     </HeaderScreen>
   );
 };
