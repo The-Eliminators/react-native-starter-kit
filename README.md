@@ -1,23 +1,27 @@
 # React Native Starter Kit
 
+Everything you will need to build you own mobile application.
+
 ## Kit Contains
 
+1. Custom Components
 1. Typescript Support
-1. i18n support
 1. Dark theme support
-1. Custom Components with style utilities support
+1. i18n support with vscode suggestion
 1. Splash Screen with theme support
 1. Custom Icon font
+1. Logger
+1. Global Error Handling (Work in Progress)
 
-## Custom components
+## List of custom component
 
-1. Screen and HeaderScreen
 1. Header
-1. Typography
+1. Typography with utility style
 1. Touchable
 1. Surface
 1. Avatar
 1. SnackBar
 1. Bottom Sheet
 1. Action Sheet
-2. TextInput
+1. TextInput
+1. DropDown
