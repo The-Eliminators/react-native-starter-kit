@@ -247,7 +247,6 @@ const SnackBarSample = ({ index }: { index: number }) => {
               showSnackbar({
                 text: 'Show the text on Snackbar',
                 action: { label: 'Undo', onPress: () => Alert.alert('hello') },
-                duration: 'long',
                 type: 'warning',
               })
             }
@@ -262,7 +261,6 @@ const SnackBarSample = ({ index }: { index: number }) => {
               showSnackbar({
                 text: 'Show the text on Snackbar',
                 action: { label: 'Undo', onPress: () => Alert.alert('hello') },
-                duration: 'long',
                 type: 'error',
               })
             }
